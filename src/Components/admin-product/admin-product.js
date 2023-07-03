@@ -40,7 +40,7 @@ function AdminProduct({ change }) {
   return (
     <div className="AdminProduct">
       ProdList
-      <button onClick={()=>{lihat()}}>List</button>
+      {/* <button onClick={()=>{lihat()}}>List</button> */}
       <div className='list'>
         {
             Products.map(item=>{
