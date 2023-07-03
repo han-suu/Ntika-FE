@@ -1,7 +1,13 @@
 import './admin-product.css';
 import Axios from 'axios';
 import { useEffect,useState } from 'react';
-function AdminProduct() {
+function AdminProduct({ change }) {
+    // const [value, setNewValue] = useState();
+
+    function handleChange(item) {
+        // setNewValue(item);
+        change(item);
+    }
     const [Products, setProducts] = useState([])
     
     useEffect(() => {
@@ -28,10 +34,9 @@ function AdminProduct() {
         console.log(Products)
     }
 
-    // const printList = ()=>{
-    //     for
+    // const kelik = (vars)=>{
+    //     console.log(vars)
     // }
-
   return (
     <div className="AdminProduct">
       ProdList
@@ -42,7 +47,7 @@ function AdminProduct() {
                 // console.log(video)
                 return (
                     <div className='list-item'>
-                        <h1>{item.Name}</h1>
+                        <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1>
                     </div>
                     
                 )
