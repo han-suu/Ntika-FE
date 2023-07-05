@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Admin from '../src/pages/admin/admin'
+// import Admin from '../src/pages/admin/admin'
+import Home from './pages/home/home';
 // import Kalender from './kalender';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Admin/>
+    {/* <Admin/> */}
+    <Home/>
   </React.StrictMode>
 );
 
