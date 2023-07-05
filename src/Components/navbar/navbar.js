@@ -10,45 +10,45 @@ function Navbar() {
     // =========================
     
     useEffect(() => {
-        const userImageButton = document.querySelector('#user-img');
-        const userPopup = document.querySelector('.login-logout-popup');
+        // const userImageButton = document.querySelector('#user-img');
+        // const userPopup = document.querySelector('.login-logout-popup');
         const popuptext = document.querySelector('.account-info');
         const actionBtn = document.querySelector('#user-btn');
         const actionBtn1 = document.querySelector('#user-btn-profile');
         const actionBtn2 = document.querySelector('#user-btn-history');
         const actionBtn3 = document.querySelector('#btn-cart');
-        if (1 != 1) {
-            //saat user sudah login
-            popuptext.innerHTML = `sign in as, UDIN`;
-            actionBtn1.innerHTML = `User Dashboard`;
-            // actionBtn1.addEventListener(`click`, () => {
-            //       location.href = '/user';
-            // })
-            actionBtn2.innerHTML = `Riwayat Pemesanan`;
-            // actionBtn2.addEventListener(`click`, () => {
-            //       location.href = '/userHis';
-            // })
-            // actionBtn3.addEventListener('click', () => {
-            //       location.href = '/cart';
-            // })
-            actionBtn.innerHTML = `sign out`;
-            // actionBtn.addEventListener('click', () => {
-            //       sessionStorage.clear();
-            //       location.reload();
-            // })
+    //     if (1 != 1) {
+    //         //saat user sudah login
+    //         popuptext.innerHTML = `sign in as, UDIN`;
+    //         actionBtn1.innerHTML = `User Dashboard`;
+    //         // actionBtn1.addEventListener(`click`, () => {
+    //         //       location.href = '/user';
+    //         // })
+    //         actionBtn2.innerHTML = `Riwayat Pemesanan`;
+    //         // actionBtn2.addEventListener(`click`, () => {
+    //         //       location.href = '/userHis';
+    //         // })
+    //         // actionBtn3.addEventListener('click', () => {
+    //         //       location.href = '/cart';
+    //         // })
+    //         actionBtn.innerHTML = `sign out`;
+    //         // actionBtn.addEventListener('click', () => {
+    //         //       sessionStorage.clear();
+    //         //       location.reload();
+    //         // })
 
-      } else {
+    //   } else {
             //user is logged out 
             popuptext.innerHTML = `sign in untuk menyewa kebaya`;
             actionBtn.innerHTML = `sign in`;
-            // actionBtn.addEventListener(`click`, () => {
-            //       location.href = '/login';
-            // })
+            actionBtn.addEventListener(`click`, () => {
+                window.location.href = '/login';
+            })
             // Menyembunyikan opsi "Profile Setting"
             actionBtn1.style.display = 'none';
             actionBtn2.style.display = 'none';
             actionBtn3.style.display = 'none';
-      }
+    //   }
     }, [])
     
     const pop = ()=>{
@@ -65,7 +65,7 @@ function Navbar() {
                 <input type="text" className="search-box" placeholder="Temukan kebaya impian Anda di sini..."/>
                 <button className="search-btn">search</button>
             </div>
-            <a href="#" onClick={()=>pop()}>
+            <a onClick={()=>pop()}>
                 <img src={profil1} id="user-img" alt=""/>
                 <div className="login-logout-popup hide">
                     <p className="account-info">Log In as, Name</p>

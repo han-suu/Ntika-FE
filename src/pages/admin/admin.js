@@ -40,7 +40,7 @@ function Admin() {
       <button onClick={()=>{handleState(3)}}>3</button>
       </div>
       
-      <div className='content'>
+      <div className='admin-content'>
         {changeContent()}
         
       </div>

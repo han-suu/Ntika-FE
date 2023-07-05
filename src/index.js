@@ -2,15 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-// import Admin from '../src/pages/admin/admin'
+import Admin from '../src/pages/admin/admin'
 import Home from './pages/home/home';
+import SignIn from './pages/sign-in/SignIn';
 // import Kalender from './kalender';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    // errorElement: <ErrorPage />,
+    // loader: rootLoader,
+  },
+  {
+    path: "/login",
+    element: <SignIn />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
     {/* <Admin/> */}
-    <Home/>
+    {/* <Home/> */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
