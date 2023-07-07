@@ -29,7 +29,7 @@
   margin: 0 auto 50px;
 }
 
-input[type="text"],
+.SignUp input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
@@ -107,7 +107,7 @@ textarea {
   color: #F9F6E5;
 }
 
-.link {
+.Signup .link {
   color: #F9F6E5;
   text-transform: capitalize;
   text-align: center;

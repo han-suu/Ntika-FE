@@ -1,6 +1,7 @@
 import './navbar.css';
 import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
+import Axios from 'axios';
 const cookies = new Cookies()
 
 function Navbar() {
@@ -12,17 +13,35 @@ function Navbar() {
     // =========================
     
     useEffect(() => {
-        let isAvailable = cookies.get('user')
-        // const userImageButton = document.querySelector('#user-img');
-        // const userPopup = document.querySelector('.login-logout-popup');
         const popuptext = document.querySelector('.account-info');
         const actionBtn = document.querySelector('#user-btn');
         const actionBtn1 = document.querySelector('#user-btn-profile');
         const actionBtn2 = document.querySelector('#user-btn-history');
         const actionBtn3 = document.querySelector('#btn-cart');
-        if (isAvailable) {
+        let token = cookies.get('user')
+        const config = {
+            headers:{
+              Authorization: token,
+            }
+        };
+        
+        
+        // const userImageButton = document.querySelector('#user-img');
+        // const userPopup = document.querySelector('.login-logout-popup');
+        
+        if (token) {
             //saat user sudah login
-            popuptext.innerHTML = `sign in as, UDIN`;
+            Axios.get('http://127.0.0.1:8080/v1/user', config)
+                .then(function (response) {
+                // console.log(response.data);
+                console.log(response.data)
+                let name = response.data.data.UserName
+                popuptext.innerHTML = `sign in as ${name}`;
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+            
             actionBtn1.innerHTML = `User Dashboard`;
             actionBtn1.addEventListener(`click`, () => {
                 window.location.href = '/user';
