@@ -1,6 +1,7 @@
 import './home.css';
 import Navbar from '../../Components/navbar/navbar';
 import Catalog from '../../Components/Catalog/catalog';
+import Recommended from '../../Components/recommended/recommended';
 function Home() {
   return (
     <div className="home">
@@ -16,7 +17,7 @@ function Home() {
             </div>
 
       </header>
-
+      <Recommended></Recommended>
       <Catalog></Catalog>
 
     </div>
