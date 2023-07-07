@@ -12,26 +12,26 @@ function Catalog() {
     const Products = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
 
     return (
-        <section class="product" id="Catalog">
-                <h2 class="product-category">Catalog</h2>
-                <button class="pre-btn"><img src={arrow} alt=""/></button>
-                <button class="nxt-btn"><img src={arrow} alt=""/></button>
-                <div class="product-container">
+        <section className="product" id="Catalog">
+                <h2 className="product-category">Catalog</h2>
+                <button className="pre-btn"><img src={arrow} alt=""/></button>
+                <button className="nxt-btn"><img src={arrow} alt=""/></button>
+                <div className="product-container">
                     
                 {
                 Products.map((item,index)=>{
                     // console.log(video)
                     return (
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="tag">rent</span>
-                                <img src={kebayas[index]} class="product-thum" alt=""/>
-                                <a href="product.html"><button class="card-btn">add to</button></a>
+                        <div className="product-card">
+                            <div className="product-image">
+                                <span className="tag">rent</span>
+                                <img src={kebayas[index]} className="product-thum" alt=""/>
+                                <a href="/detail/1"><button className="card-btn">add to</button></a>
                             </div>
-                            <div class="informasi-produk">
-                                <h2 class="product-brand">{item.Name}</h2>
-                                <p class="product-short-des"> a short line about kebaya...</p>
-                                <span class="price">{item.Price}</span>
+                            <div className="informasi-produk">
+                                <h2 className="product-brand">{item.Name}</h2>
+                                <p className="product-short-des"> a short line about kebaya...</p>
+                                <span className="price">{item.Price}</span>
                                 
                             </div>
                         </div>
