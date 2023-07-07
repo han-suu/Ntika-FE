@@ -77,7 +77,7 @@ function Navbar() {
                     <button className="btn" id="user-btn">Log Out</button>
                 </div>
             </a>
-            <a href="cart.html">
+            <a href="/cart">
                 <img src={cart} id="btn-cart" alt=""/>
             </a>
         </div>

@@ -30,9 +30,6 @@ function AdminProduct({ change }) {
         getto()
     },[])
 
-    const lihat = ()=>{
-        console.log(Products)
-    }
 
     // const kelik = (vars)=>{
     //     console.log(vars)
