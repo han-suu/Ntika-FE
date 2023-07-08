@@ -18,6 +18,7 @@ function Navbar() {
         const actionBtn1 = document.querySelector('#user-btn-profile');
         const actionBtn2 = document.querySelector('#user-btn-history');
         const actionBtn3 = document.querySelector('#btn-cart');
+        const SignUp = document.querySelector('#SignUp');
         let token = cookies.get('user')
         const config = {
             headers:{
@@ -39,7 +40,7 @@ function Navbar() {
                 .catch(function (error) {
                 console.log(error);
                 });
-            
+            SignUp.style.display = 'none';
             actionBtn1.innerHTML = `User Dashboard`;
             actionBtn1.addEventListener(`click`, () => {
                 window.location.href = '/user';
@@ -100,11 +101,11 @@ function Navbar() {
         </div>
      </div>
             <ul className="links-container">
-                  <li className="link-item"><a href="#home" className="link">Home</a></li>
-                  <li className="link-item"><a href="+" className="link">Collection</a></li>
+                  <li className="link-item"><a href="/" className="link">Home</a></li>
+                  <li className="link-item"><a href="#collection" className="link">Recommendation</a></li>
                   <li className="link-item"><a href="#Catalog" className="link">Catalog</a></li>
                   <li className="link-item"><a href="+" className="link">About Us</a></li>
-                  <li className="link-item"><a href="+" className="link">Sign Up</a></li>
+                  <li className="link-item" id='SignUp'><a href="/signup" className="link">Sign Up</a></li>
             </ul>
     </div>
   );

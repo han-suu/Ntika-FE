@@ -7,20 +7,11 @@ function Catalog() {
     const arrow = require('../../images/arrow.png');
 
     const [Products, setProducts] = useState()
-    const [Thumbnail, setThumbnail] = useState([])
     useEffect(() => {
         Axios.get('http://127.0.0.1:8080/v1/products')
         .then(function (response) {
-          setProducts(response.data.data)
-          response.data.data.map((item,index)=>{
-            Axios.get(`http://127.0.0.1:8080/v1/thumbnail/${item.ID}`)
-            .then(function (response) {
-                setThumbnail(Thumbnail => [...Thumbnail, response.data.data])
-            })
-            .catch(function (error) {
-            console.log(error);
-            });
-        })
+            console.log(response.data.data)
+            setProducts(response.data.data)
         })
         .catch(function (error) {
           console.log(error);
@@ -37,18 +28,19 @@ function Catalog() {
                 
                 {
                 Products?.map((item,index)=>{
-                    // console.log(video)
+                    console.log(index)
                     return (
                         <div className="product-card">
+                            {/* <button onClick={()=>{console.log(Products)}}>LIHAT</button> */}
                             <div className="product-image">
                                 <span className="tag">rent</span>
-                                <img src={Thumbnail[index]} className="product-thum" alt=""/>
-                                <a href="/detail/1"><button className="card-btn">add to</button></a>
+                                <img src={item.thumbnail} className="product-thum" alt=""/>
+                                <a href={`/detail/${item.id}`}><button className="card-btn">add to</button></a>
                             </div>
                             <div className="informasi-produk">
-                                <h2 className="product-brand">{item.Name}</h2>
+                                <h2 className="product-brand">{item.name}</h2>
                                 <p className="product-short-des"> a short line about kebaya...</p>
-                                <span className="price">{item.Price}</span>
+                                <span className="price">{item.price}</span>
                                 
                             </div>
                         </div>

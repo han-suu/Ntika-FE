@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import Navbar from '../../Components/navbar/navbar';
 import Catalog from '../../Components/Catalog/catalog';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Axios from 'axios';
 
 function Detail() {
     const kebaya1 = require('../../images/kebaya1.jpg');
@@ -11,8 +13,28 @@ function Detail() {
     const kebaya4 = require('../../images/kebaya4.jpg');
     const kebaya5 = require('../../images/kebaya5.jpg');
     const kebayas = [kebaya1,kebaya2,kebaya3,kebaya4,kebaya5]
-    const Products = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
-
+    const Productz = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
+      const [Products, setProducts] = useState()
+      useEffect(() => {
+            Axios.get('http://127.0.0.1:8080/v1/products')
+                  .then(function (response) {
+                  console.log(response.data.data)
+                  setProducts(response.data.data)
+                  //   response.data.data.map((item,index)=>{
+                  //     Axios.get(`http://127.0.0.1:8080/v1/thumbnail/${item.ID}`)
+                  //     .then(function (response) {
+                  //         setThumbnail(Thumbnail => [...Thumbnail, response.data.data])
+                  //     })
+                  //     .catch(function (error) {
+                  //     console.log(error);
+                  //     });
+                  // })
+                  })
+                  .catch(function (error) {
+                  console.log(error);
+                  });
+      }, [])
+      
     const { id } = useParams()
 
     const [Qty, setQty] = useState(1)
@@ -56,9 +78,9 @@ function Detail() {
                   
             </div>
             <div className="details">
-                  <h2 className="product-brand">{Products[id-1].Name}</h2>
+                  <h2 className="product-brand">{Productz[id-1].name}</h2>
                   
-                  <span className="product-price">Rp{Products[id-1].Price}</span>
+                  <span className="product-price">Rp{Productz[id-1].price}</span>
 
                   <p className="product-sub-heading">select size</p>
 
