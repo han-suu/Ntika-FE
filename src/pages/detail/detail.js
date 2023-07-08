@@ -1,25 +1,30 @@
 import './detail.css';
 import { useParams } from 'react-router-dom'
 import Navbar from '../../Components/navbar/navbar';
-import Catalog from '../../Components/Catalog/catalog';
+// import Catalog from '../../Components/Catalog/catalog';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Cookies from 'universal-cookie';
 import Axios from 'axios';
-
+const cookies = new Cookies()
 function Detail() {
-    const kebaya1 = require('../../images/kebaya1.jpg');
-    const kebaya2 = require('../../images/kebaya2.jpg');
-    const kebaya3 = require('../../images/kebaya3.jpg');
-    const kebaya4 = require('../../images/kebaya4.jpg');
-    const kebaya5 = require('../../images/kebaya5.jpg');
-    const kebayas = [kebaya1,kebaya2,kebaya3,kebaya4,kebaya5]
-    const Productz = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
+      const { id } = useParams()
+//     const kebaya1 = require('../../images/kebaya1.jpg');
+//     const kebaya2 = require('../../images/kebaya2.jpg');
+//     const kebaya3 = require('../../images/kebaya3.jpg');
+//     const kebaya4 = require('../../images/kebaya4.jpg');
+//     const kebaya5 = require('../../images/kebaya5.jpg');
+//     const kebayas = [kebaya1,kebaya2,kebaya3,kebaya4,kebaya5]
+//     const Productz = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
       const [Products, setProducts] = useState()
+      const [Images, setImages] = useState([])
       useEffect(() => {
-            Axios.get('http://127.0.0.1:8080/v1/products')
+            // console.log(id)
+            Axios.get(`http://127.0.0.1:8080/v1/product/${id}`)
                   .then(function (response) {
-                  console.log(response.data.data)
+                  // console.log(response.data.data)
                   setProducts(response.data.data)
+                  setImages(response.data.data.images)
                   //   response.data.data.map((item,index)=>{
                   //     Axios.get(`http://127.0.0.1:8080/v1/thumbnail/${item.ID}`)
                   //     .then(function (response) {
@@ -29,13 +34,15 @@ function Detail() {
                   //     console.log(error);
                   //     });
                   // })
+                  const productImageSlide = document.querySelector(".image-slider");
+                  productImageSlide.style.backgroundImage = `url('${response.data.data.images[0].Based}')`
                   })
                   .catch(function (error) {
                   console.log(error);
                   });
       }, [])
       
-    const { id } = useParams()
+    
 
     const [Qty, setQty] = useState(1)
     const [Size, setSize] = useState("s")
@@ -49,6 +56,25 @@ function Detail() {
             console.log(Qty)
             console.log("Size: ")
             console.log(Size)
+            let data ={
+                  "product_id":parseInt(id),
+                  "qty":Qty,
+                  "size":Size
+              }
+            let token = cookies.get('user')
+            let config = {
+                  headers:{
+                  Authorization: token,
+                  }
+            };
+            Axios.post('http://127.0.0.1:8080/v1/cart', data, config)
+                  .then(function (response) {
+                        // console.log(response.data);
+                        console.log(response.data)
+                  })
+                  .catch(function (error) {
+                        console.log(error);
+                  });
       }
       
       const handleChange = event => {
@@ -59,6 +85,13 @@ function Detail() {
             const sizeBtn = document.querySelector(`.${Size}-radio`);
             sizeBtn.classList.remove('check');
             event.currentTarget.classList.add('check')
+      }
+      const handleClickImage = (event,x) =>{
+            const img = document.querySelector(`.gambar`);
+            img.classList.remove('active');
+            event.currentTarget.classList.add('active')
+            const productImageSlide = document.querySelector(".image-slider");
+            productImageSlide.style.backgroundImage = `url('${Images[x].Based}')`
       }
       const minus = () =>{
             if (Qty<2) {
@@ -74,13 +107,21 @@ function Detail() {
             {/* {console.log(id)} */}
             <Navbar></Navbar>
             <section className="product-details">
-            <div className="image-slider" style={{backgroundImage: `url(${kebayas[id-1]})`}}>
+            {/* <div className="image-slider" style={{backgroundImage: `url(${kebayas[id-1]})`}}>
                   
+            </div> */}
+            <div class="image-slider">
+                  <div class="product-images">
+                        <img src={Images[0]?.Based} className="gambar active" alt="" onClick={(e) => {handleClickImage(e, 0)}}/>
+                        <img src={Images[1]?.Based} className="gambar"alt="" onClick={(e) => {handleClickImage(e, 1)}}/>
+                        <img src={Images[2]?.Based} className="gambar"alt="" onClick={(e) => {handleClickImage(e, 2)}}/>
+                        <img src={Images[3]?.Based} className="gambar"alt="" onClick={(e) => {handleClickImage(e, 3)}}/>
+                  </div>
             </div>
             <div className="details">
-                  <h2 className="product-brand">{Productz[id-1].name}</h2>
-                  
-                  <span className="product-price">Rp{Productz[id-1].price}</span>
+                  <h2 className="product-brand">{Products?.name}</h2>
+                  <p class="product-short-des">{Products?.description}</p>
+                  <span className="product-price">Rp{Products?.price}</span>
 
                   <p className="product-sub-heading">select size</p>
 
@@ -124,19 +165,6 @@ function Detail() {
       </section>
 
       
-      <section className="detail-des">
-            <h2 className="heading">description</h2>
-            <p className="des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur earum quia
-                  consectetur aperiam porro hic perferendis perspiciatis repellendus dolor, labore natus placeat
-                  voluptatum ad numquam reprehenderit ducimus aut laborum ipsam! Lorem, ipsum dolor sit amet consectetur
-                  adipisicing elit. Harum repudiandae quibusdam atque maiores asperiores rerum neque dolores facilis,
-                  temporibus, corrupti quam quaerat repellendus eveniet exercitationem ratione quod est cupiditate rem!
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque, nobis ad aspernatur unde consequatur
-                  neque harum quas rem distinctio aperiam sit itaque facilis asperiores. Mollitia nostrum sapiente
-                  tempore fugiat pariatur!</p>
-      </section>
-
-      <Catalog></Catalog>
         </div>
     );
 }
