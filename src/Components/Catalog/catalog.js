@@ -1,15 +1,32 @@
+import { useEffect } from 'react';
 import './catalog.css';
+import { useState } from 'react';
+import Axios from 'axios';
 
 function Catalog() {
-    const kebaya1 = require('../../images/kebaya1.jpg');
-    const kebaya2 = require('../../images/kebaya2.jpg');
-    const kebaya3 = require('../../images/kebaya3.jpg');
-    const kebaya4 = require('../../images/kebaya4.jpg');
-    const kebaya5 = require('../../images/kebaya5.jpg');
-    const kebayas = [kebaya1,kebaya2,kebaya3,kebaya4,kebaya5]
     const arrow = require('../../images/arrow.png');
 
-    const Products = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
+    const [Products, setProducts] = useState()
+    const [Thumbnail, setThumbnail] = useState([])
+    useEffect(() => {
+        Axios.get('http://127.0.0.1:8080/v1/products')
+        .then(function (response) {
+          setProducts(response.data.data)
+          response.data.data.map((item,index)=>{
+            Axios.get(`http://127.0.0.1:8080/v1/thumbnail/${item.ID}`)
+            .then(function (response) {
+                setThumbnail(Thumbnail => [...Thumbnail, response.data.data])
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+        })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, [])
+    // =================================================
 
     return (
         <section className="product" id="Catalog">
@@ -17,15 +34,15 @@ function Catalog() {
                 <button className="pre-btn"><img src={arrow} alt=""/></button>
                 <button className="nxt-btn"><img src={arrow} alt=""/></button>
                 <div className="product-container">
-                    
+                
                 {
-                Products.map((item,index)=>{
+                Products?.map((item,index)=>{
                     // console.log(video)
                     return (
                         <div className="product-card">
                             <div className="product-image">
                                 <span className="tag">rent</span>
-                                <img src={kebayas[index]} className="product-thum" alt=""/>
+                                <img src={Thumbnail[index]} className="product-thum" alt=""/>
                                 <a href="/detail/1"><button className="card-btn">add to</button></a>
                             </div>
                             <div className="informasi-produk">

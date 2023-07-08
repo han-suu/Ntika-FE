@@ -33,8 +33,6 @@ function Navbar() {
             //saat user sudah login
             Axios.get('http://127.0.0.1:8080/v1/user', config)
                 .then(function (response) {
-                // console.log(response.data);
-                console.log(response.data)
                 let name = response.data.data.UserName
                 popuptext.innerHTML = `sign in as ${name}`;
                 })
