@@ -14,6 +14,15 @@ function Cart() {
     // const [first, setfirst] = useState(second)
     const [Cart, setCart] = useState([])
     const [User, setUser] = useState()
+    const [StartDate, setStartDate] = useState()
+    const [EndDate, setEndDate] = useState()
+    const [Shipping, setShipping] = useState()
+    let token = cookies.get('user')
+        let config = {
+              headers:{
+              Authorization: token,
+              }
+        };
     useEffect(() => {
         let token = cookies.get('user')
         let config = {
@@ -23,8 +32,6 @@ function Cart() {
         };
         Axios.get('http://127.0.0.1:8080/v1/cart', config)
               .then(function (response) {
-                    // console.log(response.data);
-                    console.log(response.data.data)
                     setCart(response.data.data)
               })
               .catch(function (error) {
@@ -34,7 +41,6 @@ function Cart() {
         Axios.get('http://127.0.0.1:8080/v1/user', config)
             .then(function (response) {
                 // console.log(response.data);
-                console.log(response.data.data)
                 setUser(response.data.data)
             })
             .catch(function (error) {
@@ -42,6 +48,36 @@ function Cart() {
             });
     }, [])
     
+    // 
+    const Sewa = ()=>{
+        console.log("SEWA")
+        let data ={}
+            data.start = StartDate
+            data.end = EndDate
+            data.address = User.Address
+            data.shipping = Shipping
+            console.log(data)
+    }
+    const Ganti = (v)=>{
+        console.log(v)
+        setShipping(v)
+    }
+    const DeleteItem = (id)=>{
+        Axios.delete(`http://127.0.0.1:8080/v1/cart/${id}`, config)
+              .then(function (response) {
+                
+                Axios.get('http://127.0.0.1:8080/v1/cart', config)
+                    .then(function (response) {
+                        setCart(response.data.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+              })
+              .catch(function (error) {
+                    console.log(error);
+              });
+    }
   return (
     <div className="Cart">
         <Navbar></Navbar>
@@ -60,12 +96,12 @@ function Cart() {
                                     <p className="cart-size-radio-btn">Size : {item.size.toUpperCase()}</p>
                                 </div>
                                 <div className="item-counter">
-                                    <button className="counter-btn decrement">-</button>
+                                    {/* <button className="counter-btn decrement">-</button> */}
                                     <p className="item-count">{item.qty}</p>
-                                    <button className="counter-btn increment">+</button>
+                                    {/* <button className="counter-btn increment">+</button> */}
                                 </div>
                                 <p className="sm-price">Rp{item.price}</p>
-                                <button className="sm-delete-btn"><img src={close} alt=""/></button>
+                                <button className="sm-delete-btn" onClick={()=>{DeleteItem(item.id)}}><img src={close} alt=""/></button>
                             </div>
                             )
                         })  
@@ -79,13 +115,13 @@ function Cart() {
                     <p className="text">Total Belanja, </p>
                     <h1 className="bill">Rp0</h1>
                     <br/>
-                    <select className="shipping-method">
-                        <option value="" disabled selected className="option-shipping">Shipping Method</option>
+                    <select className="shipping-method" defaultValue={"met"} onChange={(e)=>{Ganti(e.target.value)}}>
+                        <option value="met" disabled className="option-shipping">Shipping Method</option>
                         <option value="delivery">Diantar</option>
                         <option value="pickup">Ambil di tempat</option>
                     </select>
                     <br/>
-                    <a href="rent.html" className="rent-btn">Sewa Sekarang</a>
+                    <span className="rent-btn" onClick={Sewa}>Sewa Sekarang</span>
                     <br/>
                 </div>
                   
@@ -93,11 +129,11 @@ function Cart() {
                     <form action="">
                         <div className="input-box">
                             <span>mulai sewa</span>
-                            <input type="date" name="" id=""/>
+                            <input type="date" name="" id="" onChange={(e)=>{setStartDate(e.target.value)}}/>
                         </div>
                         <div className="input-box">
                             <span>akhir sewa</span>
-                            <input type="date" name="" id=""/>
+                            <input type="date" name="" id=""onChange={(e)=>{setEndDate(e.target.value)}}/>
                         </div>
                     </form>
                 </div>

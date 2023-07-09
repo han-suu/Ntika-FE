@@ -96,7 +96,8 @@
 .item-count {
     text-align: center;
     line-height: 30px;
-    background-color: #F9F6E5;
+    /* background-color: #F9F6E5; */
+    color: #F9F6E5;
 }
 
 .sm-price {
