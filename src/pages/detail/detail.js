@@ -110,8 +110,8 @@ function Detail() {
             {/* <div className="image-slider" style={{backgroundImage: `url(${kebayas[id-1]})`}}>
                   
             </div> */}
-            <div class="image-slider">
-                  <div class="product-images">
+            <div className="image-slider">
+                  <div className="product-images">
                         <img src={Images[0]?.Based} className="gambar active" alt="" onClick={(e) => {handleClickImage(e, 0)}}/>
                         <img src={Images[1]?.Based} className="gambar"alt="" onClick={(e) => {handleClickImage(e, 1)}}/>
                         <img src={Images[2]?.Based} className="gambar"alt="" onClick={(e) => {handleClickImage(e, 2)}}/>
@@ -120,7 +120,7 @@ function Detail() {
             </div>
             <div className="details">
                   <h2 className="product-brand">{Products?.name}</h2>
-                  <p class="product-short-des">{Products?.description}</p>
+                  <p className="product-short-des">{Products?.description}</p>
                   <span className="product-price">Rp{Products?.price}</span>
 
                   <p className="product-sub-heading">select size</p>
