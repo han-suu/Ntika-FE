@@ -13,7 +13,8 @@ import {
 import Detail from './pages/detail/detail';
 import Cart from './pages/cart/cart';
 import SignUp from './pages/sign-up/SignUp';
-
+import User from './pages/user/user';
+import UserHistory from './pages/userHistory/user-history';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/user",
+    element: <User />,
+  },
+  {
+    path: "/userHis",
+    element: <UserHistory />,
   },
 ]);
 

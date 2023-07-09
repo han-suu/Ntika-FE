@@ -1,0 +1,66 @@
+.address-section {
+    background-color: #603912;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.address-section input[type="text"],
+.address-section input[type="number"],
+.address-section input[type="email"],
+.address-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.address-section .submit-btn {
+    background-color: #ff9898;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user h2 {
+    color: #F9F6E5;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+.container-profile {
+    width: 70%;
+    padding: 80px;
+    border-radius: 5px;
+    border: 1px solid #F9F6E5;
+    margin: 35px auto;
+    /* Mengatur margin atas dan bawah menjadi auto */
+    color: #F9F6E5;
+    display: flex;
+    /* Menggunakan flexbox */
+    flex-direction: column;
+    /* Menata elemen-elemen dalam kolom */
+    align-items: center;
+    /* Mengatur penempatan horizontal di tengah */
+    justify-content: center;
+    /* Mengatur penempatan vertikal di tengah */
+}
+
+.logo-profile {
+    height: 80px;
+    display: block;
+    margin: 0 auto 50px;
+}
+
+
+.user-info p {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.user-info strong {
+    font-weight: bold;
+}

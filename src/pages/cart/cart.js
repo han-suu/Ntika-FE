@@ -45,27 +45,27 @@ function Cart() {
   return (
     <div className="Cart">
         <Navbar></Navbar>
-        <div class="cart-section">
-            <div class="product-list">
-                <p class="section-heading">keranjang mu</p>
-                <div class="cart">
+        <div className="cart-section">
+            <div className="product-list">
+                <p className="section-heading">keranjang mu</p>
+                <div className="cart">
                     {
                         Cart.map((item,index)=>{
                             // console.log(video)
                             return (
-                                <div class="sm-product">
-                                <img src={item.image} class="sm-product-img" alt=""/>
-                                <div class="sm-text">
-                                    <p class="sm-product-name">{item.name}</p>
-                                    <p class="cart-size-radio-btn">Size : {item.size.toUpperCase()}</p>
+                                <div className="sm-product">
+                                <img src={item.image} className="sm-product-img" alt=""/>
+                                <div className="sm-text">
+                                    <p className="sm-product-name">{item.name}</p>
+                                    <p className="cart-size-radio-btn">Size : {item.size.toUpperCase()}</p>
                                 </div>
-                                <div class="item-counter">
-                                    <button class="counter-btn decrement">-</button>
-                                    <p class="item-count">{item.qty}</p>
-                                    <button class="counter-btn increment">+</button>
+                                <div className="item-counter">
+                                    <button className="counter-btn decrement">-</button>
+                                    <p className="item-count">{item.qty}</p>
+                                    <button className="counter-btn increment">+</button>
                                 </div>
-                                <p class="sm-price">Rp{item.price}</p>
-                                <button class="sm-delete-btn"><img src={close} alt=""/></button>
+                                <p className="sm-price">Rp{item.price}</p>
+                                <button className="sm-delete-btn"><img src={close} alt=""/></button>
                             </div>
                             )
                         })  
@@ -74,28 +74,28 @@ function Cart() {
             </div>
             
             
-            <div class="checkout-section">
-                <div class="checkout-box">
-                    <p class="text">Total Belanja, </p>
-                    <h1 class="bill">Rp0</h1>
+            <div className="checkout-section">
+                <div className="checkout-box">
+                    <p className="text">Total Belanja, </p>
+                    <h1 className="bill">Rp0</h1>
                     <br/>
-                    <select class="shipping-method">
-                        <option value="" disabled selected class="option-shipping">Shipping Method</option>
+                    <select className="shipping-method">
+                        <option value="" disabled selected className="option-shipping">Shipping Method</option>
                         <option value="delivery">Diantar</option>
                         <option value="pickup">Ambil di tempat</option>
                     </select>
                     <br/>
-                    <a href="rent.html" class="rent-btn">Sewa Sekarang</a>
+                    <a href="rent.html" className="rent-btn">Sewa Sekarang</a>
                     <br/>
                 </div>
                   
-                <div class="form-container">
+                <div className="form-container">
                     <form action="">
-                        <div class="input-box">
+                        <div className="input-box">
                             <span>mulai sewa</span>
                             <input type="date" name="" id=""/>
                         </div>
-                        <div class="input-box">
+                        <div className="input-box">
                             <span>akhir sewa</span>
                             <input type="date" name="" id=""/>
                         </div>
@@ -103,13 +103,13 @@ function Cart() {
                 </div>
             </div>
         </div>
-        <div class="address-section">
+        <div className="address-section">
             <h2>Alamat Pengiriman</h2>
-            <div class="user-info">
-                  <p><strong>Nama:</strong> {User.UserName} </p>
-                  <p><strong>Email:</strong> {User.Email}</p>
-                  <p><strong>No. Telepon:</strong> {User.Phone}</p>
-                  <p><strong>Alamat:</strong> {User.Address}</p>
+            <div className="cart-user-info">
+                  <p><strong>Nama:</strong> {User?.UserName} </p>
+                  <p><strong>Email:</strong> {User?.Email}</p>
+                  <p><strong>No. Telepon:</strong> {User?.Phone}</p>
+                  <p><strong>Alamat:</strong> {User?.Address}</p>
             </div>
 
 

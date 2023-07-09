@@ -180,7 +180,7 @@
 
 }
 
-.user-info {
+.cart-user-info {
     margin-top: 5px;
     width: 100%;
     border-radius: 5px;
@@ -192,7 +192,7 @@
     /* Mengatur penempatan horizontal di kiri */
 }
 
-.user-info p {
+.cart-user-info p {
     margin-top: 5px;
     /* Mengurangi margin top untuk mengatur jarak antar elemen */
     display: flex;
@@ -203,7 +203,7 @@
     /* Mengatur jarak antara elemen dalam satu baris */
 }
 
-.user-info strong {
+.cart-user-info strong {
     font-weight: bold;
 }
 
