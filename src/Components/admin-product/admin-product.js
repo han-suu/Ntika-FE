@@ -41,10 +41,11 @@ function AdminProduct({ change }) {
       <div className='list'>
         {
             Products.map(item=>{
-                // console.log(video)
+                
                 return (
                     <div className='list-item'>
-                        <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1>
+                        {/* <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1> */}
+                        <h1 onClick={()=>{handleChange(item)}}>{item.name}</h1>
                     </div>
                     
                 )

@@ -6,3 +6,7 @@
 .list-item h1:hover{
     cursor: pointer;
 }
+
+.AdminProduct .list .list-item{
+    margin: 20px 0px;
+}

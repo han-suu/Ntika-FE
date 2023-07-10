@@ -4,7 +4,13 @@ import Form from "../../Components/updateForm/updateForm"
 import AdminUpdateStock from '../../Components/admin-update/admin-updateStock';
 import AdminProduct from '../../Components/admin-product/admin-product';
 import AdminCreate from '../../Components/admin-create/admin-create';
+import AdminOrder from '../../Components/admin-order/admin-order';
 function Admin() {
+  // 1 : Product LIST
+  // 2 : UPDATE PRODUCT
+  // 3 : CREATE ITEM
+  // 4 : Order List
+  
     const [content, setcontent] = useState(0)
     const [Item, setItem] = useState()
     const changeContent = ()=>{
@@ -14,6 +20,8 @@ function Admin() {
             return <AdminUpdateStock change = {handleBack} dataItem = {Item} />
         }else if (content === 3){
           return <AdminCreate />
+        }else if (content === 4){
+          return <AdminOrder />
         }
         
     }
@@ -37,7 +45,8 @@ function Admin() {
       Admin
       <div className='menu-navigator'>
       <button onClick={()=>{handleState(1)}}>ProductList</button>
-      <button onClick={()=>{handleState(3)}}>3</button>
+      <button onClick={()=>{handleState(3)}}>Create</button>
+      <button onClick={()=>{handleState(4)}}>OrderList</button>
       </div>
       
       <div className='admin-content'>
