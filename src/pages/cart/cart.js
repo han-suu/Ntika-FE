@@ -61,6 +61,13 @@ function Cart() {
         Axios.get('http://127.0.0.1:8080/v1/cart', config)
               .then(function (response) {
                     setCart(response.data.data)
+
+                    let subTotal = 0
+                    response.data.data.map((item,index)=>{
+                        subTotal += item.qty*item.price
+                    })
+                    setSubTotal(subTotal)
+                    setTotal(subTotal)
               })
               .catch(function (error) {
                     console.log(error);
@@ -121,6 +128,21 @@ function Cart() {
             
 
         console.log(data)
+        let token = cookies.get('user')
+        let config = {
+              headers:{
+              Authorization: token,
+              }
+        };
+        Axios.post('http://127.0.0.1:8080/v1/order',data, config)
+              .then(function (response) {
+                    console.log(response.data)
+              })
+              .catch(function (error) {
+                    console.log(error);
+              });
+              window.location.href = '/userHis';
+
     }
     useEffect(() => {
         const date1 = new Date(StartDate);
