@@ -101,7 +101,7 @@ h1 {
 }
 
 
-.product-card2 {
+.user-history .product-card2 {
     flex: 0 0 auto;
     width: 250px;
     height: 450px;
@@ -109,7 +109,7 @@ h1 {
 }
 
 
-.product-image {
+.user-history .product-image {
     position: relative;
     width: 80%;
     height: 150px;
