@@ -226,7 +226,7 @@ function Cart() {
                                     <p className="item-count">{item.qty}</p>
                                     {/* <button className="counter-btn increment">+</button> */}
                                 </div>
-                                <p className="sm-price">Rp{item.price}</p>
+                                <p className="sm-price">Rp{numberWithCommas(item.price)}</p>
                                 <button className="sm-delete-btn" onClick={()=>{DeleteItem(item.id)}}><img src={close} alt=""/></button>
                             </div>
                             )
@@ -239,7 +239,7 @@ function Cart() {
             <div className="checkout-section">
                 <div className="checkout-box">
                     <p className="text">Total Belanja, </p>
-                    <h1 className="bill">Rp{Total}</h1>
+                    <h1 className="bill">Rp{numberWithCommas(Total)}</h1>
                     <br/>
                     <select className="shipping-method" defaultValue={"met"} onChange={(e)=>{Ganti(e.target.value)}}>
                         <option value="met" disabled className="option-shipping">Shipping Method</option>

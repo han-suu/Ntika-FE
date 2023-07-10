@@ -102,9 +102,9 @@ function Navbar() {
      </div>
             <ul className="links-container">
                   <li className="link-item"><a href="/" className="link">Home</a></li>
-                  <li className="link-item"><a href="#collection" className="link">Recommendation</a></li>
-                  <li className="link-item"><a href="#Catalog" className="link">Catalog</a></li>
-                  <li className="link-item"><a href="+" className="link">About Us</a></li>
+                  <li className="link-item"><a href="/#collection" className="link">Recommendation</a></li>
+                  <li className="link-item"><a href="/#Catalog" className="link">Catalog</a></li>
+                  <li className="link-item"><a href="/" className="link">About Us</a></li>
                   <li className="link-item" id='SignUp'><a href="/signup" className="link">Sign Up</a></li>
             </ul>
     </div>

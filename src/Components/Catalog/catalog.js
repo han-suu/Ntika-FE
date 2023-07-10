@@ -18,7 +18,9 @@ function Catalog() {
         });
     }, [])
     // =================================================
-
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
     return (
         <section className="product" id="Catalog">
                 <h2 className="product-category">Catalog</h2>
@@ -40,7 +42,7 @@ function Catalog() {
                             <div className="informasi-produk">
                                 <h2 className="product-brand">{item.name}</h2>
                                 <p className="product-short-des"> a short line about kebaya...</p>
-                                <span className="price">{item.price}</span>
+                                <span className="price">Rp{numberWithCommas(item.price)}</span>
                                 
                             </div>
                         </div>
