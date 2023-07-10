@@ -1,15 +1,15 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #603912;
-}
+} */
 
-h1 {
+.user-history h1 {
     color: #F9F6E5;
     text-align: center;
     margin-top: 15px;
 }
 
-.submit-btn {
+.user-history .submit-btn {
     background-color: #ff9898;
     color: #fff;
     padding: 10px 20px;
@@ -20,7 +20,7 @@ h1 {
 }
 
 /* LOGO */
-.logo-profile {
+.user-history .logo-profile {
     height: 100px;
     display: block;
     margin: 0 auto 10px;
@@ -29,12 +29,12 @@ h1 {
 
 /* END OF LOGO */
 
-.address-section {
+.user-history .address-section {
     background-color: #603912;
     padding: 20px;
 }
 
-.user-info {
+.user-history .user-info {
     margin-top: 5px;
     width: 100%;
     border-radius: 5px;
@@ -46,7 +46,7 @@ h1 {
     /* Mengatur penempatan horizontal di kiri */
 }
 
-.user-info p {
+.user-history .user-info p {
     margin-top: 5px;
     /* Mengurangi margin top untuk mengatur jarak antar elemen */
     display: flex;
