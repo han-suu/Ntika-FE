@@ -35,7 +35,7 @@ function AdminOrder({ change }) {
     },[])
 
 
-    const konfirmasi = (id)=>{
+    const proses = (id,status)=>{
       let token = cookies.get('user')
         let config = {
               headers:{
@@ -43,9 +43,17 @@ function AdminOrder({ change }) {
               }
         };
       let data = {}
-      Axios.put(`http://127.0.0.1:8080/v1/admin/konfirmasi/${id}`,data, config)
+      Axios.put(`http://127.0.0.1:8080/v1/admin/${status}/${id}`,data, config)
                   .then(function (response) {
                     console.log(response.data);
+                    Axios.get('http://127.0.0.1:8080/v1/admin/order', config)
+                      .then(function (response) {
+                        // console.log(response.data);
+                        setOrders(response.data.data)
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
                   })
                   .catch(function (error) {
                     console.log(error);
@@ -72,7 +80,9 @@ function AdminOrder({ change }) {
                           <p>Start : {item.StartDate}</p>
                           <p>End : {item.EndDate}</p>
                           <p>Durasi : {item.Durasi}</p>
-                          <button onClick={()=>{konfirmasi(item.ID)}}>KONFIRMASI</button>
+                          <button onClick={()=>{proses(item.ID,"konfirmasi")}}>KONFIRMASI</button>
+                          <button onClick={()=>{proses(item.ID,"cancel")}}>Cancel</button>
+                          <button onClick={()=>{proses(item.ID,"finish")}}>Finish</button>
                         </div>
                     </div>
                     

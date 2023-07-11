@@ -11,8 +11,9 @@ function Admin() {
   // 3 : CREATE ITEM
   // 4 : Order List
   
-    const [content, setcontent] = useState(0)
+    const [content, setcontent] = useState(1)
     const [Item, setItem] = useState()
+    const [Now, setNow] = useState("p")
     const changeContent = ()=>{
         if (content === 1) {
             return <AdminProduct change = {handleChange}/>
@@ -40,13 +41,29 @@ function Admin() {
     function handleState(state) {
         setcontent(state);
      }
+    const handleClick = (event,x) =>{
+      const sizeBtn = document.querySelector(`.${Now}-nav`);
+      sizeBtn.classList.remove('aktip');
+      event.currentTarget.classList.add('aktip')
+      setNow(x)
+      if (x==="p") {
+        handleState(1)
+      }else if (x==="c"){
+        handleState(3)
+      }else if (x==="o"){
+        handleState(4)
+      }
+    }
   return (
-    <div className="App">
-      Admin
+    <div className="Admin">
+      {/* Admin */}
       <div className='menu-navigator'>
-      <button onClick={()=>{handleState(1)}}>ProductList</button>
+      <div className='p-nav admin-nav-button aktip' onClick={(e) => {handleClick(e, "p")}}>Product List</div>
+      <div className='c-nav admin-nav-button' onClick={(e) => {handleClick(e, "c")}}>Create Product</div>
+      <div className='o-nav admin-nav-button' onClick={(e) => {handleClick(e, "o")}}>Order History</div>
+      {/* <button onClick={()=>{handleState(1)}}>ProductList</button>
       <button onClick={()=>{handleState(3)}}>Create</button>
-      <button onClick={()=>{handleState(4)}}>OrderList</button>
+      <button onClick={()=>{handleState(4)}}>OrderList</button> */}
       </div>
       
       <div className='admin-content'>

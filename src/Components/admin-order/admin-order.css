@@ -1,4 +1,7 @@
 .order-item{
-    background-color:blue;
+    /* background-color:blue; */
     margin: 30px 0px;
+    color: antiquewhite;
+    border: 2px solid whitesmoke;
+    padding: 10px;
 }

@@ -69,12 +69,25 @@ function AdminCreate({ change }) {
     //     "images":["gambarX","gambarY","gambarZ"],
     //     "stock":[3,2,1,5]
     // }
+    const Create= (e)=>{
+      e.preventDefault()
+      let data ={
+          "name": "FALILV",
+          "category": "Atasan",
+          "price": 121000,
+          "description": "TSTFYB",
+          "size_chart":"S:12 , M: 13, L: 14, XL: 15",
+          "images":["gambarX","gambarY","gambarZ"],
+          "stock":[3,2,1,5]
+      }
+      console.log(data)
+    }
   return (
     <div className="AdminCreate">
       AdminCreate
       {/* <button onClick={()=>{lihat()}}>List</button> */}
       <div className='create'>
-        <form>
+        <form onSubmit={Create}>
             <h4>Nama Barang</h4>
             <input type="text" placeholder='NamaBarang' />
             {/* <input type="text" placeholder='Category' /> */}
@@ -86,8 +99,6 @@ function AdminCreate({ change }) {
             <textarea rows="4" cols="50"></textarea>
             <br/>
             <h4>SizeChart</h4>
-            <textarea rows="4" cols="50"></textarea>
-            <br/>
 
             <label>Your Image File
             <input type="file" multiple name="myImage" accept="image/png, image/jpeg" onChange={set}/>
@@ -100,6 +111,7 @@ function AdminCreate({ change }) {
             <input type="number" placeholder='0' />
             <h4>Stock Size XL</h4>
             <input type="number" placeholder='0' />
+            <button type='submit'>SUBMIT</button>
         </form>
       </div>
     </div>

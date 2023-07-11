@@ -1,7 +1,35 @@
 .admin-content{
-    background-color: red;
+    /* background-color: red; */
+    color: antiquewhite;
 }
 
 .menu-navigator button{
     margin-left: 20px;
+}
+
+.menu-navigator{
+    width: 100vw;
+    height: 9vh;
+    background-color: #F9F6E5;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+.admin-nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* background-color: red; */
+    /* margin: 0 20px; */
+    /* border: 2px solid black; */
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.aktip{
+    color: antiquewhite;
+    background-color: #603912;
+    border-radius: 5px 5px 0px 0px;
 }
