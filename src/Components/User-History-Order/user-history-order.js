@@ -20,7 +20,7 @@ function UserHistoryOrder(props) {
               <img src={logo5} className="logo-profile" alt=""/>
               <p><strong>Tanggal Sewa:</strong> {Order?.start} - {Order?.end} </p>
               <p><strong>Shipping Method:</strong> {Order?.shipping_method} </p>
-              <p><strong>Total:</strong> {numberWithCommas(Order?.total)}</p>
+              <p><strong>Total:</strong> {numberWithCommas(props.dataOrder.total)}</p>
               <p><strong>Status:</strong> {Order?.status} </p>
               
               <div className="product-container2">
