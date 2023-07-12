@@ -6,7 +6,8 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies()
 function AdminOrder({ change }) {
     // const [value, setNewValue] = useState();
-
+    const errorimg = require('../../images/error.png');
+    const successimg = require('../../images/success.png');
     function handleChange(item) {
         // setNewValue(item);
         change(item);
@@ -50,19 +51,35 @@ function AdminOrder({ change }) {
                       .then(function (response) {
                         // console.log(response.data);
                         setOrders(response.data.data)
+                        showAlert("Order Berhasil Di ACC",successimg)
                       })
                       .catch(function (error) {
                         console.log(error);
                       });
                   })
                   .catch(function (error) {
-                    console.log(error);
+                    showAlert(error.response.data.msg,errorimg)
                   });
+      const showAlert = (msg,img) => {
+        let alertBox = document.querySelector('.alert-box');
+        let alertMsg = document.querySelector('.alert-msg');
+        let alertImg = document.querySelector('.alert-img');
+        alertImg.src = img
+        alertMsg.innerHTML = msg;
+        alertBox.classList.add('show');
+        setTimeout(() => {
+              alertBox.classList.remove('show');
+        }, 3000);
+      }
     }
   return (
     <div className="AdminProduct">
       Order
       {/* <button onClick={()=>{lihat()}}>List</button> */}
+      <div className="alert-box">
+            <img src={errorimg} className="alert-img" alt=""/>
+            <p className="alert-msg">Eror Massage</p>
+      </div>
       <div className='lists'>
         {
             Orders.map(item=>{

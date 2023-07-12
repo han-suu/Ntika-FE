@@ -17,7 +17,8 @@ function AdminUpdateStock({change, dataItem}) {
       }
 
     const getto = ()=>{
-        Axios.get(`http://127.0.0.1:8080/v1/item_stock/${dataItem.ID}`, config)
+        console.log(dataItem)
+        Axios.get(`http://127.0.0.1:8080/v1/item_stock/${dataItem.id}`, config)
               .then(function (response) {
                 setitemStock(response.data.data)
               })

@@ -309,3 +309,21 @@ body {
 .filter-button-group .btn:hover {
       color: #fff !important;
 }
+#canvas-for-googlemap{
+      height:100%; 
+      width:100%;
+      max-width:100%;
+}
+iframe{
+      height:100%;
+      width:100%;
+      border:0;
+}
+
+.wrap-map {
+      overflow:hidden; 
+      resize:none; 
+      max-width:100%; 
+      width:500px; 
+      height:500px;
+}

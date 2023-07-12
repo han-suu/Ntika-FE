@@ -17,6 +17,15 @@ function Home() {
             </div>
 
       </header>
+      <div>
+      {/* <div className='wrap-map'>
+        <div id="canvas-for-googlemap">
+          <iframe frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Amikom+Yogyakarta+University,+Jalan+Ring+Road+Utara,+Ngringin,+Condongcatur,+Kabupaten+Sleman,+Daerah+Istimewa+Yogyakarta,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+        </div>
+        <a class="googl-ehtml" rel="nofollow" href="https://www.bootstrapskins.com/themes" id="grab-maps-authorization">premium bootstrap themes</a>
+        
+      </div> */}
+      </div>
       <Recommended></Recommended>
       <Catalog></Catalog>
 
