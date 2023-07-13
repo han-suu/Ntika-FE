@@ -301,8 +301,12 @@ body {
 
 /* buttom hover */
 .active-filter-btn {
-      background-color: var(--darkb) !important;
+      /* background-color: var(--darkb) !important;
+      border-color: var(--ijo) !important; */
+      background-color: var(--ijo) !important;
+      color: #fff !important;
       border-color: var(--ijo) !important;
+      
 }
 
 /* media queries */

@@ -16,6 +16,7 @@ function Recommended() {
     const [Best, setBest] = useState([])
     const [NewArr, setNewArr] = useState([])
     const [All, setAll] = useState([])
+    const [Fil, setFil] = useState("a")
     useEffect(() => {
         Axios.get('http://127.0.0.1:8080/v1/best')
         .then(function (response) {
@@ -42,15 +43,27 @@ function Recommended() {
         });
         
     }, [])
-    
-    const showBest = ()=>{
+    const handleClickFilter = (event) =>{
+        const img = document.querySelector(`.fil${Fil}`);
+        img.classList.remove('active-filter-btn');
+        event.currentTarget.classList.add('active-filter-btn')
+        // const productImageSlide = document.querySelector(".image-slider");
+        // productImageSlide.style.backgroundImage = `url('${Images[x].Based}')`
+  }
+    const showBest = (e)=>{
+        handleClickFilter(e)
         setContent(Best)
+        setFil("b")
     }
-    const showNewArr = ()=>{
+    const showNewArr = (e)=>{
+        handleClickFilter(e)
         setContent(NewArr)
+        setFil("n")
     }
-    const showAll = ()=>{
+    const showAll = (e)=>{
+        handleClickFilter(e)
         setContent(All)
+        setFil("a")
     }
   return (
     <div className="Recommended">
@@ -61,9 +74,9 @@ function Recommended() {
         </div>
         <div className="row g-0">
                 <div className="filter-button-group">
-                    <button type="button" className="btn m-2 text-light active-filter-btn" data-filter="*" onClick={()=>{showAll()}}>All</button>
-                    <button type="button" className="btn m-2 text-light" data-filter=".best" onClick={()=>{showBest()}}>Best Sellers</button>
-                    <button type="button" className="btn m-2 text-light" data-filter=".new" onClick={()=>{showNewArr()}}>New Arrival</button>
+                    <button type="button" className="fila btn m-2 text-light active-filter-btn" data-filter="*" onClick={(e)=>{showAll(e)}}>All</button>
+                    <button type="button" className="filb btn m-2 text-light" data-filter=".best" onClick={(e)=>{showBest(e)}}>Best Sellers</button>
+                    <button type="button" className="filn btn m-2 text-light" data-filter=".new" onClick={(e)=>{showNewArr(e)}}>New Arrival</button>
                 </div>
 
                 <div className="product-container1">
