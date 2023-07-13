@@ -10,7 +10,7 @@ function Catalog() {
     useEffect(() => {
         Axios.get('http://127.0.0.1:8080/v1/products')
         .then(function (response) {
-            console.log(response.data.data)
+            // console.log(response.data.data)
             setProducts(response.data.data)
         })
         .catch(function (error) {
@@ -30,7 +30,7 @@ function Catalog() {
                 
                 {
                 Products?.map((item,index)=>{
-                    console.log(index)
+                    // console.log(index)
                     return (
                         <div className="product-card">
                             {/* <button onClick={()=>{console.log(Products)}}>LIHAT</button> */}

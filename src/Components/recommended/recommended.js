@@ -13,8 +13,9 @@ function Recommended() {
     // const Products = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
 
     const [Content, setContent] = useState([])
-    const [Best, setBest] = useState()
+    const [Best, setBest] = useState([])
     const [NewArr, setNewArr] = useState([])
+    const [All, setAll] = useState([])
     useEffect(() => {
         Axios.get('http://127.0.0.1:8080/v1/best')
         .then(function (response) {
@@ -34,6 +35,7 @@ function Recommended() {
         Axios.get('http://127.0.0.1:8080/v1/recommended')
         .then(function (response) {
             setContent(response.data.data)
+            setAll(response.data.data)
         })
         .catch(function (error) {
           console.log(error);
@@ -41,25 +43,33 @@ function Recommended() {
         
     }, [])
     
+    const showBest = ()=>{
+        setContent(Best)
+    }
+    const showNewArr = ()=>{
+        setContent(NewArr)
+    }
+    const showAll = ()=>{
+        setContent(All)
+    }
   return (
     <div className="Recommended">
       <section id="collection" className="py-5">
     <div className="container">
         <div className="title">
             <h2 className="position-relative d-inline-block">New Collection</h2>
-            <button onClick={()=>{console.log(Content)}}>LIHAT</button>
         </div>
         <div className="row g-0">
                 <div className="filter-button-group">
-                    <button type="button" className="btn m-2 text-light active-filter-btn" data-filter="*">All</button>
-                    <button type="button" className="btn m-2 text-light" data-filter=".best">Best Sellers</button>
-                    <button type="button" className="btn m-2 text-light" data-filter=".new">New Arrival</button>
+                    <button type="button" className="btn m-2 text-light active-filter-btn" data-filter="*" onClick={()=>{showAll()}}>All</button>
+                    <button type="button" className="btn m-2 text-light" data-filter=".best" onClick={()=>{showBest()}}>Best Sellers</button>
+                    <button type="button" className="btn m-2 text-light" data-filter=".new" onClick={()=>{showNewArr()}}>New Arrival</button>
                 </div>
 
                 <div className="product-container1">
                     {
                     Content?.map((item,index)=>{
-                        console.log(index)
+                        // console.log(index)
                         return (
                             <div className="product-card best">
                                 <div className="product-image">
