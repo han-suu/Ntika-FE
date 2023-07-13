@@ -2,6 +2,7 @@ import './home.css';
 import Navbar from '../../Components/navbar/navbar';
 import Catalog from '../../Components/Catalog/catalog';
 import Recommended from '../../Components/recommended/recommended';
+import Footer from '../../Components/Footer/footer';
 function Home() {
   return (
     <div className="home">
@@ -28,6 +29,7 @@ function Home() {
       </div>
       <Recommended></Recommended>
       <Catalog></Catalog>
+      <Footer></Footer>
 
     </div>
   );
