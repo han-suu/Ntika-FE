@@ -5,6 +5,23 @@ import AdminUpdateStock from '../../Components/admin-update/admin-updateStock';
 import AdminProduct from '../../Components/admin-product/admin-product';
 import AdminCreate from '../../Components/admin-create/admin-create';
 import AdminOrder from '../../Components/admin-order/admin-order';
+import Cookies from 'universal-cookie';
+import Axios from 'axios';
+import { redirect } from "react-router-dom";
+const cookies = new Cookies()
+export async function loader() {
+  // const contacts = await getContacts();
+  console.log("DEF")
+  const token = cookies.get('admin')
+  if (!token) {
+    console.log("A")
+    return redirect("/adminLogin");
+  }else{
+    console.log("B")
+    return null;
+  }
+  
+}
 function Admin() {
   // 1 : Product LIST
   // 2 : UPDATE PRODUCT

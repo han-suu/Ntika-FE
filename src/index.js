@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-import Admin from '../src/pages/admin/admin'
+import Admin, { loader as rootLoader } from '../src/pages/admin/admin'
 import Home from './pages/home/home';
 import SignIn from './pages/sign-in/SignIn';
 // import Kalender from './kalender';
@@ -15,6 +15,7 @@ import Cart from './pages/cart/cart';
 import SignUp from './pages/sign-up/SignUp';
 import User from './pages/user/user';
 import UserHistory from './pages/userHistory/user-history';
+import SignInAdmin from './pages/sign-in-admin/SignInAdmin';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
+    loader: rootLoader,
   },
   {
     path: "/detail/:id",
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/userHis",
     element: <UserHistory />,
+  },
+  {
+    path: "/adminLogin",
+    element: <SignInAdmin />,
   },
 ]);
 
