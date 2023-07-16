@@ -1,4 +1,4 @@
-.address-section {
+.address-section, .password-section {
     background-color: #603912;
     padding: 20px;
     margin-top: 20px;
@@ -7,7 +7,8 @@
 .address-section input[type="text"],
 .address-section input[type="number"],
 .address-section input[type="email"],
-.address-section textarea {
+.password-section input[type="password"],
+.user textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -15,7 +16,7 @@
     border-radius: 5px;
 }
 
-.address-section .submit-btn {
+.address-section .submit-btn, .password-section .submit-btn {
     background-color: #ff9898;
     color: #fff;
     padding: 10px 20px;

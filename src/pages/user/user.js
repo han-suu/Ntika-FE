@@ -12,11 +12,14 @@ function User() {
             }
     };
     const logo5 = require('../../images/logo5.png');
+    const errorimg = require('../../images/error.png');
+    const successimg = require('../../images/success.png');
     const [Name, setName] = useState("")
     const [Phone, setPhone] = useState("")
     const [Address, setAddress] = useState("")
     const [User, setUser] = useState()
-    
+    const [OldPass, setOldPass] = useState("")
+    const [NewPass, setNewPass] = useState("")
     useEffect(() => {
         Axios.get('http://127.0.0.1:8080/v1/user', config)
         .then(function (response) {
@@ -59,12 +62,54 @@ function User() {
         setAddress("")
         setPhone("")
         setName("")
-        console.log(data)
+        // console.log(data)
     }
+
+    const SubmitPass = (e)=>{
+        e.preventDefault()
+        // console.log("SUBMITPASS")
+        const data ={}
+        if (OldPass===""|| NewPass==="") {
+            showAlert("ADA FIELD YANG KOSONG !!",errorimg)
+            return
+        }else{
+            
+            data.old_password = OldPass
+            data.new_password = NewPass
+        }
+        Axios.put('http://127.0.0.1:8080/v1/change_password', data,config)
+            .then(function (response) {
+                // console.log(response.data)
+                showAlert("Berhasil Update Password",successimg)
+            })
+            .catch(function (error) {
+                // console.log(error);
+                showAlert("Password Lama Salah",errorimg)
+            });
+        setOldPass("")
+        setNewPass("")
+        
+    }
+    
+    const showAlert = (msg,img) => {
+        let alertBox = document.querySelector('.alert-box');
+        let alertMsg = document.querySelector('.alert-msg');
+        let alertImg = document.querySelector('.alert-img');
+        alertImg.src = img
+        alertMsg.innerHTML = msg;
+        alertBox.classList.add('show');
+        setTimeout(() => {
+              alertBox.classList.remove('show');
+        }, 3000);
+      }
   return (
     <div className="user">
         <Navbar></Navbar>
       <div className="profile">
+      <div className="alert-box">
+            <img src={errorimg} className="alert-img" alt=""/>
+            <p className="alert-msg">Eror Massage</p>
+      </div>
             <div className="container-profile">
                   <img src={logo5} className="logo-profile" alt=""/>
                   <div>
@@ -84,6 +129,15 @@ function User() {
                   <input value={Name} type="text" placeholder="Nama" onChange={(e)=>{setName(e.target.value)}}/>
                   <input value={Phone} type="number" placeholder="No Telepon" onChange={(e)=>{setPhone(e.target.value)}}/>
                   <textarea value={Address} placeholder="Alamat Lengkap" onChange={(e)=>{setAddress(e.target.value)}}></textarea>
+                  <button className="submit-btn">Simpan</button>
+
+            </form>
+      </div>
+      <div className="password-section">
+            <h2>Ganti Password</h2>
+            <form onSubmit={SubmitPass}>
+                  <input value={OldPass} type="password" placeholder="Password Lama" onChange={(e)=>{setOldPass(e.target.value)}}/>
+                  <input value={NewPass} type="password" placeholder="Password Baru" onChange={(e)=>{setNewPass(e.target.value)}}/>
                   <button className="submit-btn">Simpan</button>
 
             </form>
