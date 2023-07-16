@@ -13,7 +13,12 @@ function AdminOrder({ change }) {
         change(item);
     }
     const [Orders, setOrders] = useState([])
-    
+    let token = cookies.get('user')
+      let config = {
+            headers:{
+            Authorization: token,
+            }
+      };
     useEffect(() => {
       let token = cookies.get('user')
       let config = {
@@ -72,13 +77,30 @@ function AdminOrder({ change }) {
         }, 3000);
       }
     }
+  const getOrder = (filter)=>{
+    Axios.get(`http://127.0.0.1:8080/v1/admin/order?filter=${filter}`, config)
+      .then(function (response) {
+        console.log(response.data);
+        setOrders(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
-    <div className="AdminProduct">
+    <div className="AdminOrder">
       Order
       {/* <button onClick={()=>{lihat()}}>List</button> */}
       <div className="alert-box">
             <img src={errorimg} className="alert-img" alt=""/>
             <p className="alert-msg">Eror Massage</p>
+      </div>
+      <div className='filter-wrapper'>
+        <button className='filter-button' id='filter-diproses' onClick={()=>{getOrder("")}}>Semua</button>
+        <button className='filter-button' id='filter-diproses' onClick={()=>{getOrder("Diproses")}}>Diproses</button>
+        <button className='filter-button' id='filter-diterima' onClick={()=>{getOrder("Diterima")}}>Diterima</button>
+        <button className='filter-button' id='filter-ditolak' onClick={()=>{getOrder("Ditolak")}}>Ditolak</button>
+        <button className='filter-button' id='filter-selesai' onClick={()=>{getOrder("Selesai")}}>Selesai</button>
       </div>
       <div className='lists'>
         {
@@ -89,14 +111,32 @@ function AdminOrder({ change }) {
                         {/* <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1> */}
                         {/* <h1 onClick={()=>{handleChange(item)}}>{item.name}</h1> */}
                         <div className='order-item'>
-                          <p>ID : {item.ID}</p>
-                          <p>Address : {item.Address}</p>
-                          <p>Shipping Method : {item.Shipping_Method}</p>
-                          <p>Total : {item.Total_Price}</p>
-                          <p>Status : {item.Status}</p>
-                          <p>Start : {item.StartDate}</p>
-                          <p>End : {item.EndDate}</p>
-                          <p>Durasi : {item.Durasi}</p>
+                          <p>ID : {item.id}</p>
+                          <p>Address : {item.address}</p>
+                          <p>Shipping Method : {item.shipping_method}</p>
+                          <p>Total : {item.total}</p>
+                          <p>Status : {item.status}</p>
+                          <p>Start : {item.start}</p>
+                          <p>End : {item.end}</p>
+                          <p>Durasi : {item.durasi}</p>
+                          <div className='product-lists'>
+                          {
+                              item.items.map((item,index)=>{
+                                  return (
+                                      <div className="product-card2">
+                                          <div className="product-image2">
+                                              <img src={item.image} className="product-thum2" alt=""/>
+                                          </div>
+                                          <div className="informasi-produk2">
+                                              <h2 className="product-brand2">{item.name}</h2>
+                                              <p className="product-short-des2"> Size : {item.size}</p>
+                                              <p className="product-short-des2"> jumlah Item : {item.qty}</p>
+                                          </div>
+                                      </div>
+                                  )
+                              })  
+                          }
+                          </div>
                           <button onClick={()=>{proses(item.ID,"konfirmasi")}}>KONFIRMASI</button>
                           <button onClick={()=>{proses(item.ID,"cancel")}}>Cancel</button>
                           <button onClick={()=>{proses(item.ID,"finish")}}>Finish</button>
