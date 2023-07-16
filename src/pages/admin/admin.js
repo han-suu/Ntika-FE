@@ -70,7 +70,7 @@ function Admin() {
         {changeContent()}
         
       </div>
-      <Form/>
+      {/* <Form/> */}
     </div>
   );
 }

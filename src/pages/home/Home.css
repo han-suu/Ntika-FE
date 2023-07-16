@@ -328,6 +328,6 @@ iframe{
       overflow:hidden; 
       resize:none; 
       max-width:100%; 
-      width:500px; 
-      height:500px;
+      width:400px; 
+      height:300px;
 }
