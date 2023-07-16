@@ -9,13 +9,21 @@ import Axios from 'axios';
 const cookies = new Cookies()
 function Detail() {
       const { id } = useParams()
-//     const kebaya1 = require('../../images/kebaya1.jpg');
-//     const kebaya2 = require('../../images/kebaya2.jpg');
-//     const kebaya3 = require('../../images/kebaya3.jpg');
-//     const kebaya4 = require('../../images/kebaya4.jpg');
-//     const kebaya5 = require('../../images/kebaya5.jpg');
-//     const kebayas = [kebaya1,kebaya2,kebaya3,kebaya4,kebaya5]
-//     const Productz = [{"Name":"Kebaya1", "Price": 50000},{"Name":"Kebaya2", "Price": 30000},{"Name":"Kebaya3", "Price": 90000},{"Name":"Kebaya4", "Price": 20000},{"Name":"Kebaya5", "Price": 30000}]
+      const errorimg = require('../../images/error.png');
+      const successimg = require('../../images/success.png');
+
+      const showAlert = (msg,img) => {
+            let alertBox = document.querySelector('.alert-box');
+            let alertMsg = document.querySelector('.alert-msg');
+            let alertImg = document.querySelector('.alert-img');
+            alertImg.src = img
+            alertMsg.innerHTML = msg;
+            alertBox.classList.add('show');
+            setTimeout(() => {
+                  alertBox.classList.remove('show');
+            }, 3000);
+      }
+
       const [Products, setProducts] = useState()
       const [Images, setImages] = useState([])
       useEffect(() => {
@@ -40,46 +48,69 @@ function Detail() {
                   .catch(function (error) {
                   console.log(error);
                   });
+            Axios.get(`http://127.0.0.1:8080/v1/item_stock/${id}`)
+                  .then(function (response) {
+                        // console.log(response.data)
+                        setStock(response.data.data)
+                        setStockNow(response.data.data[0])
+                  })
+                  .catch(function (error) {
+                  console.log(error);
+                  });
       }, [])
       
     
 
     const [Qty, setQty] = useState(1)
     const [Size, setSize] = useState("s")
+    const [Stock, setStock] = useState([])
+    const [StockNow, setStockNow] = useState()
 
 //     ===============================================
       const AddToCart = ()=>{
             // console.log("MASOK")
-            console.log("ID: ")
-            console.log(id)
-            console.log("QTY: ")
-            console.log(Qty)
-            console.log("Size: ")
-            console.log(Size)
-            let data ={
-                  "product_id":parseInt(id),
-                  "qty":Qty,
-                  "size":Size
-              }
-            let token = cookies.get('user')
-            let config = {
-                  headers:{
-                  Authorization: token,
-                  }
-            };
-            Axios.post('http://127.0.0.1:8080/v1/cart', data, config)
-                  .then(function (response) {
-                        // console.log(response.data);
-                        console.log(response.data)
-                  })
-                  .catch(function (error) {
-                        console.log(error);
-                  });
+            
+            if(Qty>StockNow.Stock){
+                  showAlert("Stock Tidak Mencukupi",errorimg)
+            }else{
+                  let data ={
+                        "product_id":parseInt(id),
+                        "qty":Qty,
+                        "size":Size
+                    }
+                  let token = cookies.get('user')
+                  let config = {
+                        headers:{
+                        Authorization: token,
+                        }
+                  };
+                  Axios.post('http://127.0.0.1:8080/v1/cart', data, config)
+                        .then(function (response) {
+                              // console.log(response.data);
+                              console.log(response.data)
+                              showAlert("Item berhasil dimasukkan ke keranjang",successimg)
+                        })
+                        .catch(function (error) {
+                              console.log(error);
+                        });
+            }
+            
       }
       
       const handleChange = event => {
             // console.log(event.target.value);
             setSize(event.target.value);
+            if (event.target.value==="s") {
+                  setStockNow(Stock[0])
+            }else if(event.target.value==="m"){
+                  setStockNow(Stock[1])
+            }else if(event.target.value==="l"){
+                  setStockNow(Stock[2])
+            }else if(event.target.value==="xl"){
+                  setStockNow(Stock[3])
+            }else{
+                  setStockNow(999)
+            }
       };
       const handleClick = event =>{
             const sizeBtn = document.querySelector(`.${Size}-radio`);
@@ -104,6 +135,10 @@ function Detail() {
       }
     return (
         <div className="Detail">
+            <div className="alert-box">
+                  <img src={errorimg} className="alert-img" alt=""/>
+                  <p className="alert-msg">Eror Massage</p>
+            </div>
             {/* {console.log(id)} */}
             <Navbar></Navbar>
             <section className="product-details">
@@ -138,6 +173,7 @@ function Detail() {
                   <label htmlFor='xl-size' className="xl-radio size-radio-btn" onClick={handleClick}>xl</label>
 
                   <br/>
+                  <h2>Stock : {StockNow?.Stock}</h2>
                   <div className="qtycal">
                         
                         <div className="wrapper">

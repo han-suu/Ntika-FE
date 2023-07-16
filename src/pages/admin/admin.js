@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './admin.css';
-import Form from "../../Components/updateForm/updateForm"
+// import Form from "../../Components/updateForm/updateForm"
 import AdminUpdateStock from '../../Components/admin-update/admin-updateStock';
 import AdminProduct from '../../Components/admin-product/admin-product';
 import AdminCreate from '../../Components/admin-create/admin-create';
 import AdminOrder from '../../Components/admin-order/admin-order';
 import Cookies from 'universal-cookie';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { redirect } from "react-router-dom";
 const cookies = new Cookies()
 export async function loader() {
