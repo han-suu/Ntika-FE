@@ -243,3 +243,16 @@
     color: #fff;
     border-color: var(--ijo);
   }
+
+  .tag-cart {
+    position: absolute;
+    background: #e76a6a;
+    padding: 0.35em 0.65em;
+    border-radius: 20%;
+    color: #F9F6E5;
+    top: 5px;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+}

@@ -1,5 +1,5 @@
 import './navbar.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import Axios from 'axios';
 const cookies = new Cookies()
@@ -11,13 +11,13 @@ function Navbar() {
 
 
     // =========================
-    
+    const [Isi, setIsi] = useState()
     useEffect(() => {
         const popuptext = document.querySelector('.account-info');
         const actionBtn = document.querySelector('#user-btn');
         const actionBtn1 = document.querySelector('#user-btn-profile');
         const actionBtn2 = document.querySelector('#user-btn-history');
-        const actionBtn3 = document.querySelector('#btn-cart');
+        const actionBtn3 = document.querySelector('.cart-nav');
         const SignUp = document.querySelector('#SignUp');
         let token = cookies.get('user')
         const config = {
@@ -36,27 +36,41 @@ function Navbar() {
                 .then(function (response) {
                 let name = response.data.data.UserName
                 popuptext.innerHTML = `sign in as ${name}`;
+
+                SignUp.style.display = 'none';
+                actionBtn1.innerHTML = `User Dashboard`;
+                actionBtn1.addEventListener(`click`, () => {
+                    window.location.href = '/user';
+                })
+                actionBtn2.innerHTML = `Riwayat Pemesanan`;
+                actionBtn2.addEventListener(`click`, () => {
+                    window.location.href = '/userHis';
+                })
+                actionBtn3.addEventListener('click', () => {
+                    window.location.href = '/cart';
+                })
+                actionBtn.innerHTML = `sign out`;
+                actionBtn.addEventListener('click', () => {
+                    cookies.remove("user", { path: '/' })
+                    window.location.reload();
+                })
+                const config = {
+                    headers:{
+                    Authorization: token,
+                    }
+                };
+                Axios.get('http://127.0.0.1:8080/v1/cart', config)
+                    .then(function (response) {
+                        setIsi(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 })
                 .catch(function (error) {
                 console.log(error);
                 });
-            SignUp.style.display = 'none';
-            actionBtn1.innerHTML = `User Dashboard`;
-            actionBtn1.addEventListener(`click`, () => {
-                window.location.href = '/user';
-            })
-            actionBtn2.innerHTML = `Riwayat Pemesanan`;
-            actionBtn2.addEventListener(`click`, () => {
-                window.location.href = '/userHis';
-            })
-            actionBtn3.addEventListener('click', () => {
-                window.location.href = '/cart';
-            })
-            actionBtn.innerHTML = `sign out`;
-            actionBtn.addEventListener('click', () => {
-                  cookies.remove("user", { path: '/' })
-                  window.location.reload();
-            })
+            
 
         } else {
             //user is logged out 
@@ -95,9 +109,10 @@ function Navbar() {
                     <button className="btn" id="user-btn">Log Out</button>
                 </div>
             </a>
-            <a href="/cart">
-                <img src={cart} id="btn-cart" alt=""/>
-            </a>
+            <div className="cart-nav">
+                <a href="/cart"><img src={cart} id="btn-cart" alt=""/></a>
+                <span className="tag-cart">{Isi?.data.length}</span>
+            </div>
         </div>
      </div>
             <ul className="links-container">
