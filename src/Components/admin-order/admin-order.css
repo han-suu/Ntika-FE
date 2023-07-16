@@ -5,3 +5,16 @@
     border: 2px solid whitesmoke;
     padding: 10px;
 }
+
+.order-item p {
+    margin: 10px;
+}
+
+.AdminOrder .product-lists{
+    display: flex;
+}
+
+.AdminOrder .product-card2{
+    margin: 10px 20px;
+    
+}
