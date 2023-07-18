@@ -24,6 +24,7 @@ function Cart() {
     const [Total, setTotal] = useState(0)
     const [ShippingFee, setShippingFee] = useState(0)
     const [Durasi, setDurasi] = useState(1)
+    const [ShippingFeeGet, setShippingFeeGet] = useState(0)
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -81,6 +82,13 @@ function Cart() {
             .catch(function (error) {
                 console.log(error);
             });
+        Axios.get(`http://127.0.0.1:8080/v1/ongkir`, config)
+        .then(function (response) {
+            setShippingFeeGet(response.data.data.Ongkir)
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }, [])
     
     // 
@@ -161,7 +169,7 @@ function Cart() {
     
     const Ganti = (v)=>{
         if (v==="delivery") {
-            setShippingFee(15000)
+            setShippingFee(ShippingFeeGet)
         }else{
             setShippingFee(0)
         }
