@@ -5,6 +5,7 @@ import AdminUpdateStock from '../../Components/admin-update/admin-updateStock';
 import AdminProduct from '../../Components/admin-product/admin-product';
 import AdminCreate from '../../Components/admin-create/admin-create';
 import AdminOrder from '../../Components/admin-order/admin-order';
+import AdminOngkir from '../../Components/admin-ongkir/admin-ongkir';
 import Cookies from 'universal-cookie';
 // import Axios from 'axios';
 import { redirect } from "react-router-dom";
@@ -27,6 +28,7 @@ function Admin() {
   // 2 : UPDATE PRODUCT
   // 3 : CREATE ITEM
   // 4 : Order List
+  // 5 : Ongkir
   
     const [content, setcontent] = useState(1)
     const [Item, setItem] = useState()
@@ -40,6 +42,8 @@ function Admin() {
           return <AdminCreate />
         }else if (content === 4){
           return <AdminOrder />
+        }else if (content === 5){
+          return <AdminOngkir />
         }
         
     }
@@ -69,6 +73,8 @@ function Admin() {
         handleState(3)
       }else if (x==="o"){
         handleState(4)
+      }else if (x==="h"){
+        handleState(5)
       }
     }
   return (
@@ -78,6 +84,7 @@ function Admin() {
       <div className='p-nav admin-nav-button aktip' onClick={(e) => {handleClick(e, "p")}}>Product List</div>
       <div className='c-nav admin-nav-button' onClick={(e) => {handleClick(e, "c")}}>Create Product</div>
       <div className='o-nav admin-nav-button' onClick={(e) => {handleClick(e, "o")}}>Order History</div>
+      <div className='h-nav admin-nav-button' onClick={(e) => {handleClick(e, "h")}}>Update Ongkir</div>
       {/* <button onClick={()=>{handleState(1)}}>ProductList</button>
       <button onClick={()=>{handleState(3)}}>Create</button>
       <button onClick={()=>{handleState(4)}}>OrderList</button> */}
