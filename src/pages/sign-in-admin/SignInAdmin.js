@@ -68,7 +68,6 @@ function SignInAdmin() {
                 <button className="submit-btn" type='submit'>Sign In</button>
               </form>
             </div>
-            <a href="/signup" className="sign-link">dont have an account? create here</a>
             
       </div>
       
