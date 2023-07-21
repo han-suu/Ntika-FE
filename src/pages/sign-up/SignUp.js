@@ -79,15 +79,10 @@ function SignUp() {
                     <input type="email" id="email" placeholder="Email" onChange={mengInputEmail} />
                     <input type="password" id="password" placeholder="Password" onChange={mengInputPass} />
                     <input type="text" id="number" placeholder="Tlp Number" onChange={mengInputPhone} />
-                    <input type="checkbox" className="checkbox" id="term-and-cond"/>
-                    <label htmlFor="term-and-cond">agree to our <a href="google.com">term and condition</a></label>
-                    <br/>
-                    <input type="checkbox" className="checkbox" id="notification"/>
-                    <label htmlFor="notification">recieve upcoming offers and events emails</label>
                     <button type='submit' className="submit-btn">create account</button>
                   </form>
             </div>
-            <a href="/login" className="link">already have an account? Sign in here!</a>
+            <a href="/login" className="link-SignUp">already have an account? Sign in here!</a>
       </div>
     </div>
   );
