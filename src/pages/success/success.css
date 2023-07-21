@@ -1,0 +1,30 @@
+.success-order .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #F9F6E5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.success-order  h2 {
+    margin-top: 0;
+}
+
+.success-order  .btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff9898;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.success-order img{
+    height: auto;
+    width : 100px;
+}

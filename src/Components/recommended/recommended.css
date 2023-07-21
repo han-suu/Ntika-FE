@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 
-.btn:not(.nav-btns button):hover {
+.Recommended .btn:not(.nav-btns button):hover {
     background-color: var(--ijo);
     color: #fff;
     border-color: var(--ijo);

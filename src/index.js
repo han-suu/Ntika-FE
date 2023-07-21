@@ -16,6 +16,7 @@ import SignUp from './pages/sign-up/SignUp';
 import User from './pages/user/user';
 import UserHistory from './pages/userHistory/user-history';
 import SignInAdmin from './pages/sign-in-admin/SignInAdmin';
+import Success from './pages/success/success';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/adminLogin",
     element: <SignInAdmin />,
+  },
+  {
+    path: "/order-success",
+    element: <Success />,
   },
 ]);
 

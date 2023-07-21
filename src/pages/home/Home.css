@@ -210,7 +210,7 @@ body {
 }
 
 
-.btn:not(.nav-btns button) {
+.home .btn:not(.nav-btns button) {
       background-color: var(--darkb);
       color: rgb(85, 85, 85);
       padding: 10px 28px;
@@ -223,7 +223,7 @@ body {
       color: #eef6ed !important;
 }
 
-.btn:not(.nav-btns button):hover {
+.home  .btn:not(.nav-btns button):hover {
       background-color: var(--ijo);
       color: #fff;
       border-color: var(--ijo);

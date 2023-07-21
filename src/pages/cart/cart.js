@@ -149,7 +149,7 @@ function Cart() {
               .catch(function (error) {
                     console.log(error);
               });
-              window.location.href = '/userHis';
+              window.location.href = '/order-success';
 
     }
     useEffect(() => {
