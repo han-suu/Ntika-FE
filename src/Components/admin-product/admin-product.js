@@ -36,8 +36,6 @@ function AdminProduct({ change }) {
     // }
   return (
     <div className="AdminProduct">
-      ProdList
-      {/* <button onClick={()=>{lihat()}}>List</button> */}
       <div className='list'>
         {
             Products.map(item=>{
@@ -45,6 +43,7 @@ function AdminProduct({ change }) {
                 return (
                     <div className='list-item'>
                         {/* <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1> */}
+                        <img src={item.thumbnail} alt="" />
                         <h1 onClick={()=>{handleChange(item)}}>{item.name}</h1>
                     </div>
                     

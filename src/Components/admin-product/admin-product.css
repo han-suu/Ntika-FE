@@ -9,4 +9,12 @@
 
 .AdminProduct .list .list-item{
     margin: 20px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.AdminProduct img{
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
 }
