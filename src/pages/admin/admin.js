@@ -82,7 +82,7 @@ function Admin() {
       {/* Admin */}
       <div className='menu-navigator'>
       <div className='p-nav admin-nav-button aktip' onClick={(e) => {handleClick(e, "p")}}>Product List</div>
-      <div className='c-nav admin-nav-button' onClick={(e) => {handleClick(e, "c")}}>Create Product</div>
+      {/* <div className='c-nav admin-nav-button' onClick={(e) => {handleClick(e, "c")}}>Create Product</div> */}
       <div className='o-nav admin-nav-button' onClick={(e) => {handleClick(e, "o")}}>Order History</div>
       <div className='h-nav admin-nav-button' onClick={(e) => {handleClick(e, "h")}}>Update Ongkir</div>
       {/* <button onClick={()=>{handleState(1)}}>ProductList</button>
