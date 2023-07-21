@@ -13,6 +13,7 @@ function AdminOrder({ change }) {
         change(item);
     }
     const [Orders, setOrders] = useState([])
+    const [Now, setNow] = useState("Semua")
     let token = cookies.get('user')
       let config = {
             headers:{
@@ -77,7 +78,7 @@ function AdminOrder({ change }) {
         }, 3000);
       }
     }
-  const getOrder = (filter)=>{
+  const getOrder = (e,filter)=>{
     Axios.get(`http://127.0.0.1:8080/v1/admin/order?filter=${filter}`, config)
       .then(function (response) {
         console.log(response.data);
@@ -86,18 +87,28 @@ function AdminOrder({ change }) {
       .catch(function (error) {
         console.log(error);
       });
+      let act = document.querySelector(`#filter-${Now}`);
+      console.log(act)
+      act.classList.remove(`fil-active`);
+      e.currentTarget.classList.add('fil-active')
+      if (filter ==="") {
+        setNow("Semua")  
+      }else{
+        setNow(filter)
+      }
+      
   }
   const showButtons = (status, id)=>{
     if(status === "Diproses"){
       return(
         <div>
-          <button onClick={()=>{proses(id,"konfirmasi")}}>KONFIRMASI</button>
-          <button onClick={()=>{proses(id,"cancel")}}>Cancel</button>
+          <button className='btn-stat' onClick={()=>{proses(id,"konfirmasi")}}>KONFIRMASI</button>
+          <button className='btn-stat' onClick={()=>{proses(id,"cancel")}}>Cancel</button>
         </div>
       )
     }else if (status === "Diterima") {
       return(
-        <button onClick={()=>{proses(id,"finish")}}>Finish</button>
+        <button className='btn-stat' onClick={()=>{proses(id,"finish")}}>Finish</button>
       )
     }{
 
@@ -105,22 +116,34 @@ function AdminOrder({ change }) {
   }
   return (
     <div className="AdminOrder">
-      Order
+      
       {/* <button onClick={()=>{lihat()}}>List</button> */}
       <div className="alert-box">
             <img src={errorimg} className="alert-img" alt=""/>
             <p className="alert-msg">Eror Massage</p>
       </div>
       <div className='filter-wrapper'>
-        <button className='filter-button' id='filter-diproses' onClick={()=>{getOrder("")}}>Semua</button>
-        <button className='filter-button' id='filter-diproses' onClick={()=>{getOrder("Diproses")}}>Diproses</button>
-        <button className='filter-button' id='filter-diterima' onClick={()=>{getOrder("Diterima")}}>Diterima</button>
-        <button className='filter-button' id='filter-ditolak' onClick={()=>{getOrder("Ditolak")}}>Ditolak</button>
-        <button className='filter-button' id='filter-selesai' onClick={()=>{getOrder("Selesai")}}>Selesai</button>
+        <button className='filter-button fil-active' id='filter-Semua' onClick={(e)=>{getOrder(e,"")}}>Semua</button>
+        <button className='filter-button' id='filter-Diproses' onClick={(e)=>{getOrder(e,"Diproses")}}>Diproses</button>
+        <button className='filter-button' id='filter-Diterima' onClick={(e)=>{getOrder(e,"Diterima")}}>Diterima</button>
+        <button className='filter-button' id='filter-Ditolak' onClick={(e)=>{getOrder(e,"Ditolak")}}>Ditolak</button>
+        <button className='filter-button' id='filter-Selesai' onClick={(e)=>{getOrder(e,"Selesai")}}>Selesai</button>
       </div>
       <div className='lists'>
         {
             Orders.map(item=>{
+              let stat
+              if (item.status === 'Ditolak') {
+                stat = 'tolak'                
+              }else if (item.status === 'Diproses'){
+                stat = 'proses'
+              }else if (item.status === 'Diterima'){
+                stat = 'acc'
+              }else if (item.status === 'Selesai'){
+                stat = 'finish'
+              }else{
+                stat = 'huh'
+              }
                 
                 return (
                     <div className='list-order'>
@@ -131,7 +154,7 @@ function AdminOrder({ change }) {
                           <p>Address : {item.address}</p>
                           <p>Shipping Method : {item.shipping_method}</p>
                           <p>Total : {item.total}</p>
-                          <p>Status : {item.status}</p>
+                          <p className={stat}>Status : {item.status}</p>
                           <p>Start : {item.start}</p>
                           <p>End : {item.end}</p>
                           <p>Durasi : {item.durasi}</p>

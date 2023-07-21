@@ -1,6 +1,8 @@
 .admin-content{
     /* background-color: red; */
     color: antiquewhite;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .menu-navigator button{
@@ -8,7 +10,7 @@
 }
 
 .menu-navigator{
-    width: 100vw;
+    /* width: 100vw; */
     height: 9vh;
     background-color: #F9F6E5;
     display: flex;

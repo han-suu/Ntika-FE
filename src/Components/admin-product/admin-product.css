@@ -3,9 +3,6 @@
     color: white;
 }
 
-.list-item h1:hover{
-    cursor: pointer;
-}
 
 .AdminProduct .list .list-item{
     margin: 20px 0px;
@@ -17,4 +14,13 @@
     width: 100px;
     height: auto;
     border-radius: 10px;
+}
+
+.list-item img{
+    margin: 10px;
+}
+
+.list-item:hover{
+    filter: brightness(70%);
+    cursor: pointer;
 }

@@ -1,8 +1,45 @@
 .AdminUpdateStock{
-    background-color: rgb(25, 175, 25);
+    /* background-color: rgb(25, 175, 25); */
     color:white;
 }
 
-.AdminUpdateStock h4{
-    margin: 0px;
+/* .AdminUpdateStock h4{
+    margin-bottom: 10px;
+} */
+
+.AdminUpdateStock h3{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.AdminUpdateStock p{
+    margin-bottom: 10px;
+}
+.AdminUpdateStock{
+    /* text-align: center; */
+    font-size: 25px;
+}
+
+.AdminUpdateStock input{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.AdminUpdateStock .tombol{
+    background-color: #ff9898;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.AdminUpdateStock .tombol.back{
+    background-color: #5c5454;
+    margin-top: 30px;
+}
+
+.AdminUpdateStock .tombol:hover{
+    filter: brightness(80%);
 }

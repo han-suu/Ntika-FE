@@ -38,13 +38,14 @@ function AdminProduct({ change }) {
     <div className="AdminProduct">
       <div className='list'>
         {
-            Products.map(item=>{
+            Products.map((item,index)=>{
                 
                 return (
-                    <div className='list-item'>
+                    <div className='list-item' onClick={()=>{handleChange(item)}}>
                         {/* <h1 onClick={()=>{handleChange(item)}}>{item.Name}</h1> */}
-                        <img src={item.thumbnail} alt="" />
-                        <h1 onClick={()=>{handleChange(item)}}>{item.name}</h1>
+                        <h1>{index+1}</h1>
+                        <img  src={item.thumbnail} alt="" />
+                        <h1>{item.name}</h1>
                     </div>
                     
                 )

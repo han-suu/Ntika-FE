@@ -34,19 +34,39 @@ function AdminUpdateStock({change, dataItem}) {
   }
     // NOT EFFECTIVE, CHANGE LATER(?)
     const mengInputS = (e)=>{
-        setSizeS(e.target.value)
+        if (e.target.value<0) {
+          setSizeS(0)
+        }else{
+          setSizeS(e.target.value)
+        }
+        
         // console.log(input)
     }
     const mengInputM = (e)=>{
+      if (e.target.value<0) {
+        setSizeM(0)
+      }else{
         setSizeM(e.target.value)
+      }
+        
         // console.log(input)
     }
     const mengInputL = (e)=>{
+      if (e.target.value<0) {
+        setSizeL(0)
+      }else{
         setSizeL(e.target.value)
+      }
+        
         // console.log(input)
     }
     const mengInputXL = (e)=>{
+      if (e.target.value<0) {
+        setSizeXL(0)
+      }else{
         setSizeXL(e.target.value)
+      }
+        
         // console.log(input)
     }
 
@@ -75,12 +95,19 @@ function AdminUpdateStock({change, dataItem}) {
     for (let i = 1; i < 5; i++) {
       if (sizes[i-1] === 0) { continue; }
       Axios.post('http://127.0.0.1:8080/v1/update-stock', {
-        product_id: dataItem.ID,
+        product_id: dataItem.id,
         size_id : i,
         stock: parseInt(sizes[i-1])
       },config)
       .then(function (response) {
         console.log(response);
+        Axios.get(`http://127.0.0.1:8080/v1/item_stock/${dataItem.id}`, config)
+              .then(function (response) {
+                setitemStock(response.data.data)
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
       })
       .catch(function (error) {
         console.log(error);
@@ -96,30 +123,39 @@ function AdminUpdateStock({change, dataItem}) {
 
   return (
     <div className="AdminUpdateStock">
-      UpdateStock
-      <h1>{dataItem.Name}</h1>
-      <p>{dataItem.Description}</p>
+      
+      <h1>{dataItem.name}</h1>
+      {/* <p>{dataItem.description}</p> */}
       {/* INI PEMANGGILAN MAKE INDEX INI MUNGKIN MASIH RAWAN SALAH */}
-      <p>Stock S : {itemStock[0]?.Stock}</p>
+      {/* <p>Stock S : {itemStock[0]?.Stock}</p>
       <p>Stock M : {itemStock[1]?.Stock}</p>
       <p>Stock L : {itemStock[2]?.Stock}</p>
-      <p>Stock XL : {itemStock[3]?.Stock}</p>
+      <p>Stock XL : {itemStock[3]?.Stock}</p> */}
       
       <form onSubmit={mengSubmit}>
-        <h3>TAMBAH SIZE</h3>
+        <h3>TAMBAH STOCK SIZE</h3>
+
         <h4>Size S</h4>
-        <input type="number" placeholder='0' onChange={mengInputS}/>
+        <p>Stock : {itemStock[0]?.Stock}</p>
+        <input value={SizeS} type="number" placeholder='0' onChange={mengInputS}/>
+
         <h4>Size M</h4>
-        <input type="number" placeholder='0' onChange={mengInputM}/>
+        <p>Stock M : {itemStock[1]?.Stock}</p>
+        <input value={SizeM} type="number" placeholder='0' onChange={mengInputM}/>
+
         <h4>Size L</h4>
-        <input type="number" placeholder='0' onChange={mengInputL}/>
+        <p>Stock L : {itemStock[2]?.Stock}</p>
+        <input value={SizeL} type="number" placeholder='0' onChange={mengInputL}/>
+
         <h4>Size XL</h4>
-        <input type="number" placeholder='0' onChange={mengInputXL}/>
+        <p>Stock XL : {itemStock[3]?.Stock}</p>
+        <input value={SizeXL} type="number" placeholder='0' onChange={mengInputXL}/>
+
         <br/>
-        <button type='submit'>ADD</button>
+        <button className='tombol' type='submit'>ADD</button>
       </form>
       
-      <button onClick={()=>{handleChange()}}>Back To List</button>
+      <button className='tombol back' onClick={()=>{handleChange()}}>Back To List</button>
     </div>
   );
 }

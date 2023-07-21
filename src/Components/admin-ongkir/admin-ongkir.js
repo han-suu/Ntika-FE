@@ -32,7 +32,12 @@ function AdminOngkir({change, dataItem}) {
     change();
   }
   const mengInputOngkir = (e)=>{
-    setOngkirNew(e.target.value)
+    if (e.target.value <0) {
+      setOngkirNew(0)
+    }else{
+      setOngkirNew(e.target.value)
+    }
+      
   }
   const mengSubmit = (e)=>{
     e.preventDefault()
@@ -55,16 +60,15 @@ function AdminOngkir({change, dataItem}) {
   return (
     <div className="AdminOngkir">
       <form onSubmit={mengSubmit}>
-        <h3>Ganti Ongkir</h3>
-        <h4>Ongkir Sekarang : {Ongkir}</h4>
-      
+        <h2>Update Ongkir</h2>
+        <h4 className='now'>Ongkir Sekarang : {Ongkir}</h4>
         <h4>Ganti ongkir menjadi</h4>
         <input value={OngkirNew} type="number" placeholder='0' onChange={mengInputOngkir}/>
         <br/>
-        <button type='submit'>Ganti Ongkir</button>
+        <button className='btn' type='submit'>Ganti Ongkir</button>
       </form>
       
-      <button onClick={()=>{handleChange()}}>Back To List</button>
+      {/* <button className='btn back' onClick={()=>{handleChange()}}>Back To List</button> */}
     </div>
   );
 }
