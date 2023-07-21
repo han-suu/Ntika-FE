@@ -87,6 +87,22 @@ function AdminOrder({ change }) {
         console.log(error);
       });
   }
+  const showButtons = (status, id)=>{
+    if(status === "Diproses"){
+      return(
+        <div>
+          <button onClick={()=>{proses(id,"konfirmasi")}}>KONFIRMASI</button>
+          <button onClick={()=>{proses(id,"cancel")}}>Cancel</button>
+        </div>
+      )
+    }else if (status === "Diterima") {
+      return(
+        <button onClick={()=>{proses(id,"finish")}}>Finish</button>
+      )
+    }{
+
+    }
+  }
   return (
     <div className="AdminOrder">
       Order
@@ -137,9 +153,10 @@ function AdminOrder({ change }) {
                               })  
                           }
                           </div>
-                          <button onClick={()=>{proses(item.id,"konfirmasi")}}>KONFIRMASI</button>
+                          {showButtons(item.status, item.id)}
+                          {/* <button onClick={()=>{proses(item.id,"konfirmasi")}}>KONFIRMASI</button>
                           <button onClick={()=>{proses(item.id,"cancel")}}>Cancel</button>
-                          <button onClick={()=>{proses(item.id,"finish")}}>Finish</button>
+                          <button onClick={()=>{proses(item.id,"finish")}}>Finish</button> */}
                         </div>
                     </div>
                     
