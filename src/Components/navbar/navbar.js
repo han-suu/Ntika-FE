@@ -19,6 +19,7 @@ function Navbar() {
         const actionBtn2 = document.querySelector('#user-btn-history');
         const actionBtn3 = document.querySelector('.cart-nav');
         const SignUp = document.querySelector('#SignUp');
+        const Notif = document.querySelector('.tag-cart');
         let token = cookies.get('user')
         const config = {
             headers:{
@@ -62,6 +63,9 @@ function Navbar() {
                 Axios.get('http://127.0.0.1:8080/v1/cart', config)
                     .then(function (response) {
                         setIsi(response.data)
+                        if (response.data.data.length<1) {
+                            Notif.style.display = 'none';
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);

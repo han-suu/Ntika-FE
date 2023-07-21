@@ -258,12 +258,11 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    position: absolute;
-    bottom: 4rem;
+    
     background: #F9F6E5;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 10px;
-    margin: 50px 0;
+    margin: 0 0 10px 0;
 }
 
 .form-container span {

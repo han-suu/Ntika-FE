@@ -137,9 +137,9 @@ function AdminOrder({ change }) {
                               })  
                           }
                           </div>
-                          <button onClick={()=>{proses(item.ID,"konfirmasi")}}>KONFIRMASI</button>
-                          <button onClick={()=>{proses(item.ID,"cancel")}}>Cancel</button>
-                          <button onClick={()=>{proses(item.ID,"finish")}}>Finish</button>
+                          <button onClick={()=>{proses(item.id,"konfirmasi")}}>KONFIRMASI</button>
+                          <button onClick={()=>{proses(item.id,"cancel")}}>Cancel</button>
+                          <button onClick={()=>{proses(item.id,"finish")}}>Finish</button>
                         </div>
                     </div>
                     

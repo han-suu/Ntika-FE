@@ -248,7 +248,19 @@ function Cart() {
                 <div className="checkout-box">
                     <p className="text">Total Belanja, </p>
                     <h1 className="bill">Rp{numberWithCommas(Total)}</h1>
-                    <br/>
+                    {/* <br/> */}
+                    <div className="form-container">
+                        <form action="">
+                            <div className="input-box">
+                                <span>mulai sewa</span>
+                                <input type="date" name="" id="" value={StartDate} defaultValue={StartDate} onChange={(e)=>{GantiDateS(e.target.value)}}/>
+                            </div>
+                            <div className="input-box">
+                                <span>akhir sewa</span>
+                                <input type="date" name="" id="" value={EndDate} defaultValue={EndDate} onChange={(e)=>{GantiDate(e.target.value)}}/>
+                            </div>
+                        </form>
+                    </div>
                     <select className="shipping-method" defaultValue={"met"} onChange={(e)=>{Ganti(e.target.value)}}>
                         <option value="met" disabled className="option-shipping">Shipping Method</option>
                         <option value="delivery">Diantar</option>
@@ -259,7 +271,7 @@ function Cart() {
                     <br/>
                 </div>
                   
-                <div className="form-container">
+                {/* <div className="form-container">
                     <form action="">
                         <div className="input-box">
                             <span>mulai sewa</span>
@@ -270,7 +282,7 @@ function Cart() {
                             <input type="date" name="" id="" value={EndDate} defaultValue={EndDate} onChange={(e)=>{GantiDate(e.target.value)}}/>
                         </div>
                     </form>
-                </div>
+                </div> */}
             </div>
         </div>
         <div className="address-section">
