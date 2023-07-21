@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className="home">
       <Navbar></Navbar>
-      
+      <div className='home2'>
       
       <header className="hero-section" id="home">
             <div className="content">
@@ -33,7 +33,7 @@ function Home() {
       <About></About>
       <Footer></Footer>
       
-
+      </div>
     </div>
   );
 }
