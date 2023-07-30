@@ -211,6 +211,13 @@ function Cart() {
                     console.log(error);
               });
     }
+    const checkChart = ()=>{
+        if(Cart.length<1){
+            return(
+                <h1 style={{color: "#F9F6E5"}}>Maaf, Keranjang mu Kosong</h1>
+            )
+        }
+    }
   return (
     <div className="Cart">
         <Navbar></Navbar>
@@ -219,6 +226,7 @@ function Cart() {
             <div className="product-list">
                 <p className="section-heading">keranjang mu</p>
                 <div className="cart">
+                    {checkChart()}
                     {
                         Cart.map((item,index)=>{
                             // console.log(video)
