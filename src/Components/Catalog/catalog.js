@@ -36,7 +36,7 @@ function Catalog() {
                             {/* <button onClick={()=>{console.log(Products)}}>LIHAT</button> */}
                             <div className="product-image">
                                 <span className="tag">rent</span>
-                                <img src={item.thumbnail} className="product-thum" alt=""/>
+                                <a href={`/detail/${item.id}`}><img src={item.thumbnail} className="product-thum" alt=""/></a>
                                 <a href={`/detail/${item.id}`}><button className="card-btn">add to</button></a>
                             </div>
                             <div className="informasi-produk">

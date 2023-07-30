@@ -87,8 +87,8 @@ function Recommended() {
                             <div className="product-card best">
                                 <div className="product-image">
                                     <span className="tag">rent</span>
-                                    <img src={item.thumbnail} className="product-thum" alt=""/>
-                                    <a href="product.html"><button className="card-btn">add to</button></a>
+                                    <a href={`/detail/${item.id}`}><img src={item.thumbnail} className="product-thum" alt=""/></a>
+                                    <a href={`/detail/${item.id}`}><button className="card-btn">add to</button></a>
                                 </div>
                                 <div className="informasi-produk">
                                     <h2 className="product-brand">{item.name}</h2>
