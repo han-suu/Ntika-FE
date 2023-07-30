@@ -152,3 +152,8 @@
   line-height: 30px;
   font-weight: 500;
 }
+
+.error-message {
+  color: #e74343;
+  margin-left: 5px;
+}
